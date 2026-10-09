@@ -26,9 +26,9 @@ export async function modelStatus(config = localConfig()) {
   let tags;
   try { tags = await request(config, '/api/tags'); }
   catch { return { ...base, status: 'unreachable', message: 'No podemos conectar con Ollama. Puede que no esté instalado o que esté cerrado. Abre Ollama y vuelve a comprobar.' }; }
-  if (!Array.isArray(tags.models)) return { ...base, status:'invalid_response', message:'El servicio local no devuelve el catálogo esperado de Ollama. Comprueba la instalación y el puerto.' };
-  const installed_models = tags.models.map(m=>m.name || m.model).filter(validModel);
-  const model = tags.models.find(m => m.name === config.model || m.model === config.model);
+  if (!Array.isArray(tags?.models)) return { ...base, status:'invalid_response', message:'El servicio local no devuelve el catálogo esperado de Ollama. Comprueba la instalación y el puerto.' };
+  const installed_models = tags.models.filter(m=>m&&typeof m==='object').map(m=>m.name || m.model).filter(validModel);
+  const model = tags.models.find(m => m && (m.name === config.model || m.model === config.model));
   if (!model) return { ...base, installed_models, status:'missing_model', message: `Ollama responde, pero falta el modelo ${config.model}. Descárgalo o elige uno instalado con el instalador.` };
   let detail;
   try { detail = await request(config, '/api/show', { model: config.model }); }

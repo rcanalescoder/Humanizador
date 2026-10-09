@@ -15,7 +15,11 @@ Fuentes oficiales consultadas el 9 de octubre de 2026: [Ollama macOS](https://do
 ## Avance
 
 - [x] Identificadas la falta de diagnóstico concreto y la dependencia de `ps` en el ciclo de vida.
-- [ ] Ayuda y diagnóstico.
-- [ ] Instalador y configuración persistente.
+- [x] Ayuda y diagnóstico: servicio, modelo, instrucciones por sistema y enlace al manual.
+- [x] Instalador y configuración persistente: elección explícita, descargas consentidas y prueba interactiva sin Ollama.
 - [ ] Arranque/parada y pruebas Windows.
 - [ ] Documentación, Codex y publicación verificada.
+
+## Incidencia de compatibilidad encontrada en CI
+
+La primera matriz (ejecución 37928541349) pasó en macOS y Linux. Windows pasó el ciclo de vida, pero la extracción y las anotaciones fallaron porque PDF.js exige rutas de recursos con barra final `/` y recibía separadores `\`. Se normalizan las rutas en `server/extract.mjs` y `server/annotations.mjs`; las pruebas existentes de PDF y anotaciones cubren el comportamiento afectado. No se reduce la batería ni se omite Windows.

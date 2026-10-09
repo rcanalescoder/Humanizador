@@ -1,17 +1,18 @@
 import { getDocument, version } from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { createRequire } from 'node:module';
-import { dirname, join } from 'node:path';
+import { dirname } from 'node:path';
 import { hash, canonical, documentHash } from '../core/changes.mjs';
 import { analyzeBlocks, ruleSnapshot, ruleHash } from '../core/rules.mjs';
 import { pageText } from '../core/pdf-text.mjs';
 
 const require = createRequire(import.meta.url);
-const assets = dirname(require.resolve('pdfjs-dist/package.json'));
+// PDF.js requires URL-style separators and a trailing slash, also on Windows.
+const assets = dirname(require.resolve('pdfjs-dist/package.json')).replaceAll('\\','/');
 export const MAX_PAGES = 300;
 export async function extractPdf(bytes, profile, progress = () => {}) {
   const pdfSha = hash(bytes);
   const loading = getDocument({ data: new Uint8Array(bytes), isEvalSupported: false, useSystemFonts: false,
-    standardFontDataUrl: join(assets, 'standard_fonts/'), cMapUrl: join(assets, 'cmaps/'), cMapPacked: true });
+    standardFontDataUrl: `${assets}/standard_fonts/`, cMapUrl: `${assets}/cmaps/`, cMapPacked: true });
   let pdf;
   try {
     pdf = await loading.promise;

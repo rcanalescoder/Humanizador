@@ -1,10 +1,11 @@
 import {editorialPrinciples} from '../core/editorial-principles.mjs';
 import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { createRequire } from 'node:module';
-import { dirname, join } from 'node:path';
+import { dirname } from 'node:path';
 import { pageText } from '../core/pdf-text.mjs';
 import { hash, canonical } from '../core/changes.mjs';
-const assets = dirname(createRequire(import.meta.url).resolve('pdfjs-dist/package.json'));
+// Node accepts these forward-slash paths; PDF.js rejects a trailing backslash.
+const assets = dirname(createRequire(import.meta.url).resolve('pdfjs-dist/package.json')).replaceAll('\\','/');
 const invalid = message => { const e = new Error(message); e.status = 400; throw e; };
 export const annotationList = (db, id, images = false) => db.prepare('SELECT * FROM annotations WHERE document_id=? ORDER BY page,created_at,id').all(id).map(row => {
   const { anchor, preview, ...rest } = row;
@@ -28,7 +29,7 @@ export async function createAnchor(bytes, input) {
   if (!['text','region'].includes(input.kind)) invalid('Tipo de anotación no válido.');
   if (!Array.isArray(input.rects) || !input.rects.length || input.rects.length > 100) invalid('Selecciona texto o un área de la página.');
   const task = getDocument({ data:new Uint8Array(bytes),isEvalSupported:false,useSystemFonts:false,
-    standardFontDataUrl:join(assets,'standard_fonts/'),cMapUrl:join(assets,'cmaps/'),cMapPacked:true });
+    standardFontDataUrl:`${assets}/standard_fonts/`,cMapUrl:`${assets}/cmaps/`,cMapPacked:true });
   try {
     const pdf = await task.promise;
     if (input.page > pdf.numPages) invalid('La página no pertenece al PDF.');
