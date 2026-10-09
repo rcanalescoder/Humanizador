@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-07",
+  "scope": "Casos sintéticos para investigar la comprobación de fidelidad por separado. No equivalen a pruebas semánticas automatizadas superadas. Las valoraciones son editoriales y deben contrastarse al modificar el comprobador.",
+  "cases": [
+    {
+      "id": "FID-001",
+      "source": "El control del avance del plan es necesario.",
+      "replacement": "Controlar el avance del plan es necesario.",
+      "expected": "faithful",
+      "reason": "Cambiar el nombre de acción por el verbo conserva la obligación de controlar el mismo objeto.",
+      "status": "Caso reducido del falso rechazo observado; pendiente de ejecución aislada."
+    },
+    {
+      "id": "FID-002",
+      "source": "Poner en marcha el servicio requiere la comprobación del cumplimiento de los acuerdos.",
+      "replacement": "Poner en marcha el servicio requiere comprobar que se cumplen los acuerdos.",
+      "expected": "faithful",
+      "reason": "Se mantienen la puesta en marcha, la obligación de comprobar y el cumplimiento como objeto de esa comprobación.",
+      "status": "Caso reducido: v10 rechazó erróneamente esta transformación dentro de NUEVO-P1; v9 la aceptó."
+    },
+    {
+      "id": "FID-003",
+      "source": "Poner en marcha el servicio requiere la comprobación del cumplimiento de los acuerdos.",
+      "replacement": "Poner en marcha el servicio requiere cumplir los acuerdos.",
+      "expected": "unfaithful",
+      "reason": "Desaparece la obligación de comprobar. Cumplir y verificar el cumplimiento son acciones distintas.",
+      "status": "Contraejemplo necesario: resolver los falsos rechazos anteriores no debe aprobar esta pérdida de significado."
+    }
+  ]
+}

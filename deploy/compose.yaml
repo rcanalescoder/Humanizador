@@ -1,0 +1,18 @@
+services:
+  humanizador:
+    build: ..
+    restart: unless-stopped
+    init: true
+    ports:
+      - "127.0.0.1:8787:8787"
+    environment:
+      HUMANIZADOR_PUBLIC_URL: ${HUMANIZADOR_PUBLIC_URL:?Indica la URL HTTPS}
+      HUMANIZADOR_PASSWORD: ${HUMANIZADOR_PASSWORD:?Configura una contraseña de al menos 12 caracteres}
+      HUMANIZADOR_MAX_UPLOAD_MB: ${HUMANIZADOR_MAX_UPLOAD_MB:-100}
+    volumes:
+      - humanizador_data:/app/data
+    mem_limit: 1g
+    cpus: 1
+    stop_grace_period: 10s
+volumes:
+  humanizador_data:

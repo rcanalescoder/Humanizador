@@ -1,0 +1,872 @@
+{
+  "format_version": "1.0",
+  "catalogue_version": "0.4.0",
+  "date": "2026-10-06",
+  "locale": "es-ES",
+  "sources": [
+    {
+      "id": "CL26",
+      "title": "Propuesta de reglas de Claude aportada por Roberto (6/10/2026)",
+      "kind": "user_generated_proposal",
+      "version": "78ac8459b882e6a46bb724ac2b8b814d3f9e5ac74336f039c71e0a2076fb6f28",
+      "scope": "108 regex, 12 métricas, 100 criterios y 8 contrapesos; adaptación editorial, sin probabilidades de autoría."
+    }
+  ],
+  "rules": [
+    {
+      "id": "HES-061",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Resto de limitación del asistente",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "R002"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "type": "literal",
+        "phrases": [
+          "mi corte de conocimiento",
+          "mis datos de entrenamiento",
+          "hasta mi última actualización",
+          "no tengo acceso a información en tiempo real"
+        ],
+        "method": "Coincidencia literal con límites Unicode; contexto y aprobación necesarios.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Revisar si esta limitación pertenece al documento o se ha pegado desde una respuesta de chatbot.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "mi corte de conocimiento",
+        "possible_revision": "Revisar si esta limitación pertenece al documento o se ha pegado desde una respuesta de chatbot.",
+        "abstain": "Una explicación sobre limitaciones de modelos puede citarla con intención."
+      },
+      "exceptions": "Una explicación sobre limitaciones de modelos puede citarla con intención.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-062",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Oferta del asistente de seguir escribiendo",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "R007"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "type": "literal",
+        "phrases": [
+          "¿quieres que profundice",
+          "¿te gustaría que amplíe",
+          "¿quieres que lo adapte",
+          "¿quieres que prepare"
+        ],
+        "method": "Coincidencia literal con límites Unicode; contexto y aprobación necesarios.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Comprobar si la oferta de generar más contenido pertenece a la comunicación real.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "¿quieres que profundice",
+        "possible_revision": "Comprobar si la oferta de generar más contenido pertenece a la comunicación real.",
+        "abstain": "Un correo o conversación puede contener una oferta legítima."
+      },
+      "exceptions": "Un correo o conversación puede contener una oferta legítima.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-063",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Negativa de asistente fuera de contexto",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "R008"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "type": "literal",
+        "phrases": [
+          "no puedo cumplir con",
+          "no puedo proporcionar",
+          "no puedo generar",
+          "no tengo la capacidad de"
+        ],
+        "method": "Coincidencia literal con límites Unicode; contexto y aprobación necesarios.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Leer el destinatario y el asunto; retirar solo residuos de una respuesta ajena.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "no puedo cumplir con",
+        "possible_revision": "Leer el destinatario y el asunto; retirar solo residuos de una respuesta ajena.",
+        "abstain": "Una negativa personal, una política o un ejemplo sobre asistentes se conserva."
+      },
+      "exceptions": "Una negativa personal, una política o un ejemplo sobre asistentes se conserva.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-064",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Atribución colectiva sin referencia",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "R046"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "type": "literal",
+        "phrases": [
+          "los expertos coinciden",
+          "diversos estudios señalan",
+          "estudios recientes demuestran",
+          "numerosos investigadores afirman"
+        ],
+        "method": "Coincidencia literal con límites Unicode; contexto y aprobación necesarios.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Localizar la fuente o limitar la afirmación; no inventar una referencia para corregirla.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "los expertos coinciden",
+        "possible_revision": "Localizar la fuente o limitar la afirmación; no inventar una referencia para corregirla.",
+        "abstain": "Puede existir una referencia en el párrafo vecino o en la bibliografía."
+      },
+      "exceptions": "Puede existir una referencia en el párrafo vecino o en la bibliografía.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-065",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Equilibrio ideal sin explicación",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "R067"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "type": "literal",
+        "phrases": [
+          "el equilibrio perfecto",
+          "un equilibrio perfecto"
+        ],
+        "method": "Coincidencia literal con límites Unicode; contexto y aprobación necesarios.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Comprobar qué condiciones sostienen la valoración; proponerlas solo si ya están en el texto.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "el equilibrio perfecto",
+        "possible_revision": "Comprobar qué condiciones sostienen la valoración; proponerlas solo si ya están en el texto.",
+        "abstain": "Puede ser una opinión deliberada o una formulación artística."
+      },
+      "exceptions": "Puede ser una opinión deliberada o una formulación artística.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-066",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Promesa comercial sin mecanismo",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "R060"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "type": "literal",
+        "phrases": [
+          "solución definitiva",
+          "resultados garantizados",
+          "experiencia sin igual",
+          "experiencia inigualable"
+        ],
+        "method": "Coincidencia literal con límites Unicode; contexto y aprobación necesarios.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Revisar el alcance de la promesa y la evidencia que aporta el pasaje.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "solución definitiva",
+        "possible_revision": "Revisar el alcance de la promesa y la evidencia que aporta el pasaje.",
+        "abstain": "Una garantía contractual o una cita de publicidad requiere otro criterio."
+      },
+      "exceptions": "Una garantía contractual o una cita de publicidad requiere otro criterio.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-067",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Importancia sin relación concreta",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "R058"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "type": "literal",
+        "phrases": [
+          "desempeña un papel crucial",
+          "desempeña un papel fundamental",
+          "juega un papel crucial"
+        ],
+        "method": "Coincidencia literal con límites Unicode; contexto y aprobación necesarios.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Explicar la relación y su consecuencia con datos del contexto; no eliminar una valoración respaldada.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "desempeña un papel crucial",
+        "possible_revision": "Explicar la relación y su consecuencia con datos del contexto; no eliminar una valoración respaldada.",
+        "abstain": "La explicación puede aparecer inmediatamente antes o después."
+      },
+      "exceptions": "La explicación puede aparecer inmediatamente antes o después.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-068",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Calco para revisar en castellano",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "R086"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "type": "literal",
+        "phrases": [
+          "hace sentido",
+          "estar en la misma página"
+        ],
+        "method": "Coincidencia literal con límites Unicode; contexto y aprobación necesarios.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Comprobar el sentido figurado; usar «tiene sentido» o «estar de acuerdo» si encajan.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "hace sentido",
+        "possible_revision": "Comprobar el sentido figurado; usar «tiene sentido» o «estar de acuerdo» si encajan.",
+        "abstain": "Una página literal, una cita o una voz de personaje puede justificarlo."
+      },
+      "exceptions": "Una página literal, una cita o una voz de personaje puede justificarlo.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-069",
+      "version": "0.4.1",
+      "locale": "es-ES",
+      "name": "Frase-moraleja al final de párrafo",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L004"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Repetición de una conclusión: identifica la proposición ya expresada y comprueba que el cierre no añade consecuencia ni cumple una función de síntesis. Conservar recapitulaciones y énfasis que orientan.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Repetición de una conclusión: identifica la proposición ya expresada y comprueba que el cierre no añade consecuencia ni cumple una función de síntesis. Conservar recapitulaciones y énfasis que orientan.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El párrafo termina con una sentencia que repite lo dicho en tono solemne.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-070",
+      "version": "0.4.1",
+      "locale": "es-ES",
+      "name": "Mucha longitud, poca información",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L015"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Extensión que entorpece una acción o relación concreta: indicar qué resulta confuso o se repite. La longitud o la posibilidad de abreviar no bastan.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Extensión que entorpece una acción o relación concreta: indicar qué resulta confuso o se repite. La longitud o la posibilidad de abreviar no bastan.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Si subrayas lo que cada frase añade de nuevo, queda muy poco.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-071",
+      "version": "0.4.2",
+      "locale": "es-ES",
+      "name": "Antítesis fabricada",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L021"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Exige dos ideas explícitamente contrapuestas y explica por qué la oposición es falsa o equivale a repetir lo mismo. Una condición y su consecuencia no constituyen por sí solas una antítesis. Conservar contrastes que previenen confusiones, diferencias sustantivas y descripciones de un fracaso o de un cambio insuficiente, aunque nadie haya defendido antes la idea negada.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Exige dos ideas explícitamente contrapuestas y explica por qué la oposición es falsa o equivale a repetir lo mismo. Una condición y su consecuencia no constituyen por sí solas una antítesis. Conservar contrastes que previenen confusiones, diferencias sustantivas y descripciones de un fracaso o de un cambio insuficiente, aunque nadie haya defendido antes la idea negada.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "No buscamos reducir los retrasos: buscamos que las entregas se retrasen menos.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Si la solución conserva el problema, hemos sustituido una dependencia por otra: describe un fracaso, no una contradicción."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-072",
+      "version": "0.4.1",
+      "locale": "es-ES",
+      "name": "Nominalización en cadena",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L029"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Cadena de al menos dos nombres de acción que oculta qué se hace o repite la misma acción. Identificar esos nombres concretos. Infinitivos, gerundios y subordinadas con verbos no son una cadena nominal. Dos palabras con sufijos no bastan: comprobar su función y el contexto.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Cadena de al menos dos nombres de acción que oculta qué se hace o repite la misma acción. Identificar esos nombres concretos. Infinitivos, gerundios y subordinadas con verbos no son una cadena nominal. Dos palabras con sufijos no bastan: comprobar su función y el contexto.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "\"La realización de la implementación de la mejora\" en vez de verbos.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-073",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Metáforas que no se sostienen",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L038"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Imágenes mezcladas o que, leídas en literal, no significan nada. Señalar solo un problema concreto que no resuelva el contexto; conservar voz y significado.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Imágenes mezcladas o que, leídas en literal, no significan nada. Señalar solo un problema concreto que no resuelva el contexto; conservar voz y significado.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Imágenes mezcladas o que, leídas en literal, no significan nada.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-074",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Tratamiento inconsistente",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L042"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Salta de tú a usted o a vosotros dentro del mismo texto. Señalar solo un problema concreto que no resuelva el contexto; conservar voz y significado.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Salta de tú a usted o a vosotros dentro del mismo texto. Señalar solo un problema concreto que no resuelva el contexto; conservar voz y significado.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Salta de tú a usted o a vosotros dentro del mismo texto.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-075",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Variación elegante forzada",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L048"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Señalar un cambio de sinónimo solo si genera una confusión concreta de referente; no penalizar variación léxica legítima.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Señalar un cambio de sinónimo solo si genera una confusión concreta de referente; no penalizar variación léxica legítima.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Rota sinónimos para no repetir (empresa, compañía, organización, entidad) aunque confunda.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-076",
+      "version": "0.4.1",
+      "locale": "es-ES",
+      "name": "Párrafo intercambiable",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L055"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Abstracción que deja sin identificar situación, acción o consecuencia después de leer el contexto. Un pronombre con referente claro no es un defecto por sí mismo. Eso no garantiza que la relación afirmada entre dos ideas esté justificada: revisar esas conexiones con HES-080.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Abstracción que deja sin identificar situación, acción o consecuencia después de leer el contexto. Un pronombre con referente claro no es un defecto por sí mismo. Eso no garantiza que la relación afirmada entre dos ideas esté justificada: revisar esas conexiones con HES-080.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Cambias el tema por otro y el párrafo sigue valiendo.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-077",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Importancia afirmada, no demostrada",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L063"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Señalar una importancia o garantía proclamada sin explicar mecanismo o consecuencia. Conservar valoraciones personales explícitas, límites como «parte del valor» y la intención pedagógica del autor.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Señalar una importancia o garantía proclamada sin explicar mecanismo o consecuencia. Conservar valoraciones personales explícitas, límites como «parte del valor» y la intención pedagógica del autor.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Dice que algo \"desempeña un papel crucial\" sin enseñar por qué.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-078",
+      "version": "0.4.1",
+      "locale": "es-ES",
+      "name": "Consejos de sentido común",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L073"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Consejo que no permite saber qué hacer en la situación descrita y que el contexto no concreta. Conservar instrucciones aplicables, aunque usen imperativos o se formulen como reglas.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Consejo que no permite saber qué hacer en la situación descrita y que el contexto no concreta. Conservar instrucciones aplicables, aunque usen imperativos o se formulen como reglas.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "\"Define tus objetivos\", \"sé constante\", \"busca el equilibrio\".",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-079",
+      "version": "0.4.0",
+      "locale": "es-ES",
+      "name": "Matización acumulada",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L076"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Cada afirmación llega envuelta en reservas. Señalar solo un problema concreto que no resuelva el contexto; conservar voz y significado.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Cada afirmación llega envuelta en reservas. Señalar solo un problema concreto que no resuelva el contexto; conservar voz y significado.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Cada afirmación llega envuelta en reservas.",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-080",
+      "version": "0.4.1",
+      "locale": "es-ES",
+      "name": "Metacomentario",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "CL26"
+      ],
+      "source_rule_ids": [
+        "L086"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "passage",
+      "detector": {
+        "type": "local_editorial",
+        "phrases": [],
+        "method": "Anuncio, recapitulación o transición que repite sin función o afirma una conexión que el contexto no sostiene. Comprobar qué idea enlaza con cuál y qué relación se aporta. Que un deíctico tenga referente claro no prueba esa relación. Conservar transiciones que orientan, atribuciones y cambios de tema declarados sin fingir una causa. No inventar una intención humorística para justificar cualquier salto.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Anuncio, recapitulación o transición que repite sin función o afirma una conexión que el contexto no sostiene. Comprobar qué idea enlaza con cuál y qué relación se aporta. Que un deíctico tenga referente claro no prueba esa relación. Conservar transiciones que orientan, atribuciones y cambios de tema declarados sin fingir una causa. No inventar una intención humorística para justificar cualquier salto.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El texto habla de sí mismo: \"como hemos visto\", \"veamos ahora\".",
+        "possible_revision": "Solo con información del original.",
+        "abstain": "Cuando la forma cumple una función argumental o expresa la voz deliberada del autor."
+      },
+      "exceptions": "Conservar experiencias, humor, opiniones y recapitulaciones que orientan; no inventar escenas para concretar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    }
+  ]
+}

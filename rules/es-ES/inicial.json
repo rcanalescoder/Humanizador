@@ -1,0 +1,1904 @@
+{
+  "format_version": "0.1.0",
+  "catalogue_version": "0.1.0",
+  "date": "2026-10-06",
+  "locale": "es-ES",
+  "status": "research_specification",
+  "notes": [
+    "44 reglas candidatas; ningún detector está implementado o validado en corpus.",
+    "Los ejemplos positivos son candidatos a revisión, no pruebas de autoría.",
+    "Los umbrales son propuestas de diseño propias, no resultados de investigación.",
+    "Las propuestas requieren aprobación por ocurrencia antes de exportarse como operaciones."
+  ],
+  "global_exclusions": [
+    "quoted_text",
+    "code",
+    "literal_publication",
+    "protected_author_expression",
+    "uncertain_extraction"
+  ],
+  "sources": [
+    {
+      "id": "RC",
+      "title": "Preferencias globales de Roberto y encargo de Humanizador",
+      "kind": "author_preference",
+      "url": null,
+      "version": "Aportadas en la conversación del 2026-10-06",
+      "scope": "Perfil Roberto; criterios editoriales propios, sin inferencia de autoría."
+    },
+    {
+      "id": "BL",
+      "title": "blader humanizer",
+      "kind": "community_pattern",
+      "url": "https://github.com/blader/humanizer/tree/225a6f39ac85f76ee48dbad772ea4abe4ed6c9d8",
+      "version": "225a6f39ac85f76ee48dbad772ea4abe4ed6c9d8",
+      "scope": "Inspiración editorial en inglés; requiere adaptación y evaluación."
+    },
+    {
+      "id": "AD",
+      "title": "adelaidasofia humanizer",
+      "kind": "community_pattern",
+      "url": "https://github.com/adelaidasofia/humanizer/blob/9c764db0e7331f27f803522205f01c78a0a67ed1/SKILL.md",
+      "version": "9c764db0e7331f27f803522205f01c78a0a67ed1",
+      "scope": "Patrones candidatos en español, sin validación independiente."
+    },
+    {
+      "id": "FM",
+      "title": "humanizer multilingual fichero español",
+      "kind": "community_pattern",
+      "url": "https://github.com/finestructure-ai/humanizer-multilingual/blob/f6a3d7e4a3a0fe8a404954dcc03fff8ed77bc9f9/plugins/humanizer-multilingual/skills/humanize/references/spanish.md",
+      "version": "f6a3d7e4a3a0fe8a404954dcc03fff8ed77bc9f9",
+      "scope": "Pistas léxicas; se rechazan generalizaciones sobre usos legítimos y autoría."
+    },
+    {
+      "id": "FC",
+      "title": "Conclusiones del seminario de lenguaje claro",
+      "kind": "editorial_guidance",
+      "url": "https://www.fundeu.es/wp-content/uploads/2017/05/Conclusiones_Seminario_Lenguaje_Claro.pdf",
+      "version": "Seminario de 2017; consulta 2026-10-06",
+      "scope": "Claridad, destinatario y conservación de precisión; no lista de marcadores de IA."
+    },
+    {
+      "id": "FN",
+      "title": "Fundéu a nivel de",
+      "kind": "linguistic_guidance",
+      "url": "https://www.fundeu.es/recomendacion/a-nivel-de-usos-correctos-e-incorrectos-1054/",
+      "version": "Actualización 2021-04-27; consulta 2026-10-06",
+      "scope": "Distingue altura y jerarquía de otros usos."
+    },
+    {
+      "id": "FG",
+      "title": "Fundéu gerundio",
+      "kind": "linguistic_guidance",
+      "url": "https://www.fundeu.es/recomendacion/el-gerundio/",
+      "version": "Actualización 2025-07-10; consulta 2026-10-06",
+      "scope": "Contexto sintáctico y temporal; no prohibición general."
+    },
+    {
+      "id": "LT",
+      "title": "LanguageTool reglas robustas",
+      "kind": "engineering_guidance",
+      "url": "https://dev.languagetool.org/developing-robust-rules.html",
+      "version": "Consulta 2026-10-06",
+      "scope": "Prueba de falsos positivos y corpus diversos, no fundamento lingüístico de cada regla."
+    },
+    {
+      "id": "ST",
+      "title": "Estudio de sintaxis académica en español",
+      "kind": "research",
+      "url": "https://www.castledown.com/journals/lea/article/view/lea.2026.104760",
+      "version": "Publicación 2026-09-23",
+      "scope": "Variación entre modelos; sin base humana. No valida umbrales de estilo."
+    }
+  ],
+  "rules": [
+    {
+      "id": "HES-001",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Muletilla de importancia",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC",
+        "AD"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "cabe destacar que",
+          "es importante señalar que",
+          "conviene destacar que"
+        ],
+        "method": "Detectar la locución fuera de citas y comprobar si solo anuncia la información siguiente.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "El equipo tiene cinco personas.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Cabe destacar que el equipo tiene cinco personas.",
+        "possible_revision": "El equipo tiene cinco personas.",
+        "abstain": "En este capítulo explico por qué conviene destacar las excepciones."
+      },
+      "exceptions": "Conservar si anuncia una distinción relevante; no eliminar el contenido posterior.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-002",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Cierre anunciado",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "en definitiva",
+          "en conclusión",
+          "para concluir"
+        ],
+        "method": "Localizar la fórmula; revisar si el cierre aporta síntesis necesaria o repite sin avance.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "La cola procesa los documentos por turnos.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "En definitiva, la cola permite procesar los documentos por turnos.",
+        "possible_revision": "La cola procesa los documentos por turnos.",
+        "abstain": "En conclusión, aceptamos la hipótesis alternativa tras las pruebas anteriores."
+      },
+      "exceptions": "Conservar conclusiones argumentadas y secciones cuyo género exige conclusión.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-003",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Reformulación vacía",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "dicho de otro modo",
+          "en otras palabras"
+        ],
+        "method": "Comparar la frase posterior con la anterior; emitir aviso solo si no aclara ni añade precisión.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "La tarea pasa a la cola.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "La tarea pasa a la cola. Dicho de otro modo, la tarea se encola.",
+        "possible_revision": "La tarea pasa a la cola.",
+        "abstain": "El arrendamiento caduca. En otras palabras, otro worker puede retomar la tarea si el primero deja de responder."
+      },
+      "exceptions": "Conservar analogías o reformulaciones que permiten entender un concepto.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-004",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Invitación de plantilla",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC",
+        "FM"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "vamos a sumergirnos",
+          "adentrémonos",
+          "exploremos juntos"
+        ],
+        "method": "Localizar la invitación al comienzo de un apartado y revisar su función.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "La cola guarda los trabajos pendientes.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Vamos a sumergirnos en el fascinante mundo de las colas.",
+        "possible_revision": "La cola guarda los trabajos pendientes.",
+        "abstain": "Vamos a sumergirnos cuando el instructor dé la señal."
+      },
+      "exceptions": "Excluir sentido literal, diálogo y voz narrativa deliberada.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-005",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Apertura genérica de época",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC",
+        "AD"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "en el mundo actual",
+          "en la era digital",
+          "en un mundo cada vez más"
+        ],
+        "method": "Buscar al abrir un apartado; revisar si hay marco temporal concreto necesario.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Las empresas deben guardar sus documentos.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "En el mundo actual, las empresas deben guardar sus documentos.",
+        "possible_revision": "Las empresas deben guardar sus documentos.",
+        "abstain": "En la era digital cambió el soporte de los archivos de este museo; el apartado compara ambos periodos."
+      },
+      "exceptions": "Conservar el marco si interviene en el argumento y se precisa.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-006",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Promesa sin contenido",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC",
+        "FM"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "llevar al siguiente nivel",
+          "desbloquear el potencial",
+          "solución integral"
+        ],
+        "method": "Localizar la promesa; pedir qué acción o resultado afirma realmente el pasaje.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Especificar qué pasos cubre y qué cambia, con datos ya aportados.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Esta solución integral llevará tu proceso al siguiente nivel.",
+        "possible_revision": "Especificar qué pasos cubre y qué cambia, con datos ya aportados.",
+        "abstain": "La solución integral de la ecuación se calcula con estas condiciones de contorno."
+      },
+      "exceptions": "Excluir acepciones técnicas y promesas demostradas en el contexto.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-007",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Importancia sin justificación",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "es crucial",
+          "es fundamental",
+          "resulta imprescindible"
+        ],
+        "method": "Revisar qué consecuencia respalda el juicio y si ya se ha explicado.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Antes de analizarlo, comprobamos que se puede abrir.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Es crucial validar el fichero para garantizar la excelencia.",
+        "possible_revision": "Antes de analizarlo, comprobamos que se puede abrir.",
+        "abstain": "Es imprescindible conocer la contraseña para descifrar este PDF."
+      },
+      "exceptions": "Conservar necesidad real y condiciones precisas; no rebajar obligación.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-008",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Referencia temporal vaga",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "a día de hoy",
+          "hoy en día",
+          "actualmente"
+        ],
+        "method": "Señalar usos repetidos o un marco temporal sin función; conservar la certeza temporal.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Actualmente usamos dos herramientas.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "A día de hoy, actualmente usamos dos herramientas.",
+        "possible_revision": "Actualmente usamos dos herramientas.",
+        "abstain": "A día de hoy no hay sentencia firme; la fecha de esta revisión importa."
+      },
+      "exceptions": "No suprimir temporalidad que limita una afirmación; concretar fecha solo si se dispone de ella.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-009",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Calco de cierre temporal",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC",
+        "FM"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "al final del día"
+        ],
+        "method": "Distinguir cierre figurado de una hora o periodo real.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "La decisión depende del coste.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Al final del día, la decisión depende del coste.",
+        "possible_revision": "La decisión depende del coste.",
+        "abstain": "Al final del día cerramos la oficina y hacemos la copia de seguridad."
+      },
+      "exceptions": "La lectura temporal literal es válida; la alternativa depende del argumento.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-010",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Verbo de presentación inflado",
+      "family": "lexico",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC",
+        "AD"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "se erige como",
+          "se posiciona como"
+        ],
+        "method": "Comprobar si el giro sustituye a una relación simple o describe posicionamiento real.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "El registro contiene los trabajos pendientes.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El registro se erige como la fuente de los trabajos pendientes.",
+        "possible_revision": "El registro contiene los trabajos pendientes.",
+        "abstain": "La marca se posiciona como alternativa económica en su campaña."
+      },
+      "exceptions": "Conservar posicionamiento y lenguaje propio del género cuando aporte significado.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-011",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Verbo nominal innecesario",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC",
+        "FC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "linguistic",
+        "phrases": [
+          "proceder a",
+          "llevar a cabo la",
+          "realizar la"
+        ],
+        "method": "Detectar perífrasis seguida de nombre de acción; comprobar si existe un verbo equivalente con la misma modalidad.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "El servidor valida el fichero.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El servidor procede a realizar la validación del fichero.",
+        "possible_revision": "El servidor valida el fichero.",
+        "abstain": "Antes de proceder a la firma, lee las condiciones."
+      },
+      "exceptions": "No condensar si expresa fase, autorización o distinción técnica relevante.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-012",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Autoridad sin fuente identificable",
+      "family": "contenido",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC",
+        "BL"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [
+          "los expertos afirman",
+          "según diversos estudios",
+          "la ciencia demuestra"
+        ],
+        "method": "Revisar atribución y referencias próximas; pedir autor o fuente cuando faltan.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Identificar los estudios y ajustar la afirmación a lo que muestran.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Según diversos estudios, esta técnica siempre mejora la comprensión.",
+        "possible_revision": "Identificar los estudios y ajustar la afirmación a lo que muestran.",
+        "abstain": "Según los estudios de Ana Pérez citados en la nota 4, el efecto depende de la muestra."
+      },
+      "exceptions": "No inventar una referencia ni borrar la afirmación como forma de ocultar la falta de apoyo.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-013",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Contraste sin alternativa planteada",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [
+          "no es",
+          "no se trata de",
+          "sino"
+        ],
+        "method": "Identificar la oposición y revisar si la alternativa aparece en el problema o aclara una confusión real.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Explicar qué hace la herramienta y qué cambia.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "No es una herramienta. Es una revolución.",
+        "possible_revision": "Explicar qué hace la herramienta y qué cambia.",
+        "abstain": "No es un fallo de conexión, sino de permisos: el servidor devuelve 403."
+      },
+      "exceptions": "Conservar contrastes que corrigen un diagnóstico o delimitan el significado.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-014",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Pregunta y respuesta de plantilla",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Localizar pregunta breve seguida de respuesta enfática; revisar recurrencia y función pedagógica.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Describir el resultado concreto que ya consta en el texto.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "¿El resultado? Una eficiencia sin precedentes.",
+        "possible_revision": "Describir el resultado concreto que ya consta en el texto.",
+        "abstain": "¿Qué pasa si caduca el arrendamiento? Otro worker puede retomar la tarea."
+      },
+      "exceptions": "Conservar preguntas útiles, entrevistas y diálogos; no prohibir el recurso.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-015",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Tríadas reiteradas",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "metric",
+        "phrases": [],
+        "method": "Candidata: tres o más enumeraciones de tres elementos en cinco párrafos; revisar si la simetría fuerza contenido.",
+        "requires_context": true,
+        "threshold_status": "proposed_uncalibrated"
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Mantener solo los atributos explicados por el pasaje.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Ágil, potente y sencillo. Rápido, seguro y fiable. Flexible, completo y eficaz.",
+        "possible_revision": "Mantener solo los atributos explicados por el pasaje.",
+        "abstain": "El análisis consta de extracción, detección y exportación."
+      },
+      "exceptions": "Las enumeraciones de tres pasos reales son válidas. Umbral propuesto, sin calibrar.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-016",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Arranques repetidos",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "metric",
+        "phrases": [],
+        "method": "Candidata: misma secuencia inicial de dos a cuatro palabras en tres oraciones seguidas; revisar intención.",
+        "requires_context": true,
+        "threshold_status": "proposed_uncalibrated"
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "El sistema guarda el fichero, lo analiza y permite exportarlo.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Este sistema guarda el fichero. Este sistema lo analiza. Este sistema lo exporta.",
+        "possible_revision": "El sistema guarda el fichero, lo analiza y permite exportarlo.",
+        "abstain": "Yo estaba allí. Yo lo vi. Yo decidí contarlo."
+      },
+      "exceptions": "Conservar anáfora y énfasis deliberados; no fusionar fases distintas si se pierde orden.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-017",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Referente poco claro",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC",
+        "FC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [
+          "esto",
+          "ello",
+          "lo anterior",
+          "este enfoque"
+        ],
+        "method": "Pedir el antecedente inequívoco cuando hay varias entidades compatibles en el contexto.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Precisar qué componente falla si la información está disponible.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "La API llama al worker y al extractor. Este falla.",
+        "possible_revision": "Precisar qué componente falla si la información está disponible.",
+        "abstain": "La petición caduca. Esto impide recibir el resultado."
+      },
+      "exceptions": "No inventar el antecedente; puede quedar una pregunta editorial pendiente.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-018",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Actor necesario ausente",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC",
+        "FC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [
+          "se debe",
+          "se realizará",
+          "se procede"
+        ],
+        "method": "Revisar si el lector necesita saber quién ejecuta la acción y el contexto no lo indica.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "El autor revisa el resultado antes de exportarlo, si esa responsabilidad está confirmada.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Se debe revisar el resultado antes de exportarlo.",
+        "possible_revision": "El autor revisa el resultado antes de exportarlo, si esa responsabilidad está confirmada.",
+        "abstain": "Se venden libros usados."
+      },
+      "exceptions": "La impersonal y la pasiva son legítimas; no exigir sujeto donde no aporta.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-019",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Oración difícil de seguir",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "linguistic",
+        "phrases": [],
+        "method": "Candidata: más de 45 palabras y al menos tres subordinadas; comprobar referentes y relaciones antes de avisar.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Separar el pasaje conservando cada condición y su alcance.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "La oración acumula varias condiciones, incisos y excepciones sin dejar claro a qué operación se refieren.",
+        "possible_revision": "Separar el pasaje conservando cada condición y su alcance.",
+        "abstain": "Una oración larga con enumeración bien ordenada y condiciones inequívocas."
+      },
+      "exceptions": "La longitud selecciona para revisar, no demuestra mala escritura. Umbral propuesto.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-020",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Ristra de frases telegráficas",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "metric",
+        "phrases": [],
+        "method": "Candidata: cuatro oraciones seguidas de seis palabras o menos en prosa explicativa.",
+        "requires_context": true,
+        "threshold_status": "proposed_uncalibrated"
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Conectar la situación, sus causas y consecuencias según el contexto.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Todo cambia. Nada encaja. Hay dudas. El equipo espera.",
+        "possible_revision": "Conectar la situación, sus causas y consecuencias según el contexto.",
+        "abstain": "Cuatro intervenciones breves de un diálogo."
+      },
+      "exceptions": "Excluir diálogo, instrucciones breves y énfasis intencional. Umbral propuesto.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-021",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Cautelas redundantes",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "podría posiblemente",
+          "quizá tal vez",
+          "puede potencialmente"
+        ],
+        "method": "Localizar acumulación de marcadores y comprobar qué incertidumbre necesita conservarse.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "El cambio podría afectar al resultado.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El cambio podría posiblemente afectar al resultado.",
+        "possible_revision": "El cambio podría afectar al resultado.",
+        "abstain": "Podría afectar al resultado, aunque todavía no sabemos en qué condiciones."
+      },
+      "exceptions": "Mantener hipótesis, cautelas distintas y límites reales; no transformar posibilidad en certeza.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-022",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Rayas parentéticas reiteradas",
+      "family": "presentacion",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "metric",
+        "phrases": [],
+        "method": "Candidata: tres pares de rayas parentéticas en tres párrafos; revisar legibilidad y preferencia de autor.",
+        "requires_context": true,
+        "threshold_status": "proposed_uncalibrated"
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Proponer paréntesis o reordenar solo tras revisar la frase.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Una explicación usa rayas para casi todos sus incisos, con varios encajados en la misma oración.",
+        "possible_revision": "Proponer paréntesis o reordenar solo tras revisar la frase.",
+        "abstain": "—No voy —dijo Ana—. Nos vemos mañana."
+      },
+      "exceptions": "Excluir diálogo, títulos, nombres y uso editorial deliberado. Umbral propuesto.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-023",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Gerundio que oscurece la relación",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "FG",
+        "RC"
+      ],
+      "foundation": "linguistic_guidance_with_author_preference",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "linguistic",
+        "phrases": [],
+        "method": "Analizar sujeto, vínculo temporal o causal y papel del gerundio; avisar si el enlace es incierto.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "El informe se envió el lunes y se aprobó el viernes.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El informe se envió el lunes, aprobándose el viernes sin relación explicada.",
+        "possible_revision": "El informe se envió el lunes y se aprobó el viernes.",
+        "abstain": "Tropezó, rompiéndose una pierna."
+      },
+      "exceptions": "Aplicar la recomendación actual, que admite ciertos usos posteriores; no reemplazar todos los gerundios.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-024",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Ritmo excesivamente uniforme",
+      "family": "sintaxis",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC",
+        "ST"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "metric",
+        "phrases": [],
+        "method": "Hipótesis: al menos diez oraciones con coeficiente de variación de longitud inferior a 0,15; revisión opcional.",
+        "requires_context": true,
+        "threshold_status": "proposed_uncalibrated"
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Revisar el pasaje completo, sin imponer una mezcla artificial de longitudes.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Diez frases sucesivas mantienen el mismo tamaño y estructura sin necesidad del contenido.",
+        "possible_revision": "Revisar el pasaje completo, sin imponer una mezcla artificial de longitudes.",
+        "abstain": "Un procedimiento usa pasos breves de longitud semejante."
+      },
+      "exceptions": "No activar por defecto. El umbral es experimental y depende del género.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-025",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Conclusión repetida en varios bloques",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Comparar conclusión, resumen y aplicación; mostrar fragmentos si repiten el mismo argumento sin función nueva.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Conservar la explicación y convertir los otros bloques en aportaciones distintas si hacen falta.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El mismo consejo aparece en el cuerpo, ideas clave, aplicación y cierre sin añadir nada.",
+        "possible_revision": "Conservar la explicación y convertir los otros bloques en aportaciones distintas si hacen falta.",
+        "abstain": "Un resumen ejecutivo permite leer la decisión sin recorrer el informe completo."
+      },
+      "exceptions": "Conservar recapitulación útil y lectura por capas.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-026",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Cierre que explica una escena ya clara",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Revisar si la frase posterior a un ejemplo solo impone una moraleja evidente.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Conservar la escena y quitar la moraleja solo si no añade un matiz.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El equipo pudo entregar después de resolver el bloqueo. Esto demuestra la importancia de colaborar.",
+        "possible_revision": "Conservar la escena y quitar la moraleja solo si no añade un matiz.",
+        "abstain": "La escena termina con una conclusión técnica necesaria que no se deduce de forma directa."
+      },
+      "exceptions": "Preservar la opinión sentenciosa del autor cuando cumple una función.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-027",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Anuncio reiterado de lo que sigue",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "como veremos más adelante",
+          "en el siguiente apartado veremos",
+          "a continuación exploraremos"
+        ],
+        "method": "Buscar recurrencia y verificar si la referencia orienta al lector hacia una dependencia real.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Cerrar con el problema concreto que enlaza ambos apartados.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Cada apartado termina anunciando que en el siguiente veremos más detalles.",
+        "possible_revision": "Cerrar con el problema concreto que enlaza ambos apartados.",
+        "abstain": "La definición completa está en el apartado 4; aquí basta conocer su función."
+      },
+      "exceptions": "Conservar referencias necesarias y orientación en obras largas.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-028",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Encabezado duplicado por la primera frase",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "block",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Comparar título y primera oración; comprobar si la oración solo repite el rótulo.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Empezar por cómo se limita o mide el consumo, con información disponible.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Título: Control de costes. Primera frase: El control de costes consiste en controlar los costes.",
+        "possible_revision": "Empezar por cómo se limita o mide el consumo, con información disponible.",
+        "abstain": "Título: Control de costes. Primera frase: Cada trabajo tiene un presupuesto máximo de llamadas."
+      },
+      "exceptions": "Una definición real puede ser necesaria aunque repita el término.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-029",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Transición que no conecta el argumento",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC",
+        "FC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Leer el final de un apartado y el principio del siguiente; localizar el enlace ausente.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Explicar la relación entre procesamiento y coste si está sustentada por el contenido.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Una explicación sobre extracción pasa a precios sin explicar qué gasto introduce el procesamiento.",
+        "possible_revision": "Explicar la relación entre procesamiento y coste si está sustentada por el contenido.",
+        "abstain": "Dos capítulos independientes de un libro de relatos."
+      },
+      "exceptions": "No inventar relaciones causales ni obligar a conectar unidades independientes.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-030",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Ejemplo sin desarrollo suficiente",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Revisar si el ejemplo permite entender situación, acción y resultado que ilustra.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Pedir qué hizo y qué cambió; completar solo con material del autor.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Una empresa usó IA y mejoró mucho.",
+        "possible_revision": "Pedir qué hizo y qué cambió; completar solo con material del autor.",
+        "abstain": "Para ilustrar un formato basta mostrar un nombre de fichero."
+      },
+      "exceptions": "No forzar un relato completo en cada ejemplo breve.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-031",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Sustitución del caso por consejo genérico",
+      "family": "fidelidad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "document",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "diff",
+        "phrases": [],
+        "method": "Comparar antes y después: localizar eliminación de escena o ejemplo a favor de una recomendación abstracta.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Recuperar la escena y aclarar su relación con el argumento.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El borrador conserva una escena del equipo; la propuesta la reemplaza por «fomenta la colaboración».",
+        "possible_revision": "Recuperar la escena y aclarar su relación con el argumento.",
+        "abstain": "El autor pide expresamente resumir y permite omitir ejemplos."
+      },
+      "exceptions": "Solo detectable con fuente de comparación; no acusar pérdida sin ella.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-032",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Contenido omitido al abreviar",
+      "family": "fidelidad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "document",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "diff",
+        "phrases": [],
+        "method": "Comparar inventario de argumentos, condiciones y referencias entre versiones.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Restituir la condición y reordenar si hace falta.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Una propuesta elimina la excepción que limitaba cuándo aplicar la regla.",
+        "possible_revision": "Restituir la condición y reordenar si hace falta.",
+        "abstain": "Resumen solicitado con selección de alcance aprobada por el autor."
+      },
+      "exceptions": "No usar una métrica de longitud como prueba de pérdida; revisar el significado.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-033",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Negrita reiterada sin función",
+      "family": "presentacion",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "metric",
+        "phrases": [],
+        "method": "Candidata: más del 20 % de palabras en negrita en prosa de al menos 200 palabras; revisar jerarquía.",
+        "requires_context": true,
+        "threshold_status": "proposed_uncalibrated"
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Reducir el énfasis a los elementos que facilitan la lectura.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Un párrafo destaca casi todos sus sustantivos y deja de señalar una prioridad.",
+        "possible_revision": "Reducir el énfasis a los elementos que facilitan la lectura.",
+        "abstain": "Una tabla usa negrita en encabezados de columna."
+      },
+      "exceptions": "Solo si la extracción conserva formato fiable. Umbral propuesto.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-034",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Explicación convertida en viñetas",
+      "family": "presentacion",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Revisar listas que expresan razonamiento dependiente sin conectores ni desarrollo.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Desarrollar el razonamiento en párrafos y conservar las enumeraciones reales.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Problema. Cambio. Impacto. Beneficio. Sin explicar las relaciones.",
+        "possible_revision": "Desarrollar el razonamiento en párrafos y conservar las enumeraciones reales.",
+        "abstain": "Lista de los cuatro ficheros que se van a descargar."
+      },
+      "exceptions": "Conservar listas, tablas y pasos cuando ayudan a leer.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-035",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Títulos con molde repetido",
+      "family": "presentacion",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "document",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Detectar una misma secuencia de títulos aplicada a tres o más apartados y revisar pertinencia.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Nombrar el contenido real de cada apartado.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Todos los apartados repiten «qué es», «por qué importa», «cómo aplicarlo» aunque no corresponda.",
+        "possible_revision": "Nombrar el contenido real de cada apartado.",
+        "abstain": "Una colección de fichas comparables necesita la misma estructura."
+      },
+      "exceptions": "Conservar formatos de obra, fichas y plantillas solicitadas.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-036",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Residuo de conversación en un documento",
+      "family": "presentacion",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC",
+        "BL"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "document",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "como modelo de lenguaje",
+          "espero que esto te ayude",
+          "si quieres, puedo"
+        ],
+        "method": "Literales del asistente y aperturas «¡Claro! Aquí tienes…» o «Por supuesto, aquí tienes…» al inicio de párrafo en ensayo o explicación técnica. Citas, ejemplos de código y otros géneros excluyen la ampliación; revisión humana obligatoria.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Quitar el envoltorio conversacional tras confirmar que no forma parte de la obra.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Espero que esto te ayude. Si quieres, puedo ampliar el documento.",
+        "possible_revision": "Quitar el envoltorio conversacional tras confirmar que no forma parte de la obra.",
+        "abstain": "El ensayo cita «como modelo de lenguaje» para analizar respuestas de un chatbot."
+      },
+      "exceptions": "Excluir citas, diálogo, correos y cierres pertinentes.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-037",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Variante léxica fuera del perfil",
+      "family": "es-ES",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "literal",
+        "phrases": [
+          "computadora",
+          "celular",
+          "ustedes",
+          "vos"
+        ],
+        "method": "Comparar con glosario del proyecto y contexto; señalar inconsistencia si existe, no procedencia.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Unificar según el glosario elegido, si no es cita ni comparación regional.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Una interfaz es-ES alterna «ordenador» y «computadora» para el mismo objeto sin motivo.",
+        "possible_revision": "Unificar según el glosario elegido, si no es cita ni comparación regional.",
+        "abstain": "El capítulo compara el uso de «ordenador» en España y «computadora» en América."
+      },
+      "exceptions": "No condenar variantes válidas, citas o personajes; «ustedes» también se usa en España.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-038",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Cambio injustificado de trato",
+      "family": "es-ES",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "linguistic",
+        "phrases": [],
+        "method": "Detectar mezcla de tú, usted y vosotros con el mismo destinatario; revisar cambio de voz.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Mantener el trato elegido para ese destinatario.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Primero sube tu fichero. Después deberá revisar su documento.",
+        "possible_revision": "Mantener el trato elegido para ese destinatario.",
+        "abstain": "El narrador habla de tú y una carta citada trata al lector de usted."
+      },
+      "exceptions": "No corregir cambios de interlocutor o citas; comprobar antecedentes.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-039",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Terminología incoherente",
+      "family": "es-ES",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC",
+        "FC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "document",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "linguistic",
+        "phrases": [],
+        "method": "Comparar usos de términos declarados equivalentes en el glosario y sus referentes.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Elegir un término o explicar las diferencias reales.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El mismo resultado se llama informe, entrega y documento sin aclarar si son cosas distintas.",
+        "possible_revision": "Elegir un término o explicar las diferencias reales.",
+        "abstain": "PDF original, informe de revisión y fichero de cambios son objetos diferentes."
+      },
+      "exceptions": "No introducir sinónimos para aparentar variedad ni fusionar conceptos distintos.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-040",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "A nivel de sin altura o jerarquía",
+      "family": "es-ES",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "FN"
+      ],
+      "foundation": "linguistic_guidance",
+      "scope": "sentence",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "linguistic",
+        "phrases": [
+          "a nivel de",
+          "a nivel"
+        ],
+        "method": "Revisar si expresa altura o jerarquía; proponer una preposición solo si se mantiene la relación.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "El fallo ocurre en la interfaz.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El fallo ocurre a nivel de la interfaz.",
+        "possible_revision": "El fallo ocurre en la interfaz.",
+        "abstain": "El asunto se tratará a nivel de dirección."
+      },
+      "exceptions": "Usos físicos y jerárquicos admitidos; la preposición depende del contexto.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-041",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Cambio de persona narrativa",
+      "family": "fidelidad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "document",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "diff",
+        "phrases": [],
+        "method": "Comparar primera persona, narrador y atribución entre origen y propuesta.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Conservar la persona narrativa y la experiencia expresada.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "«Yo decidí parar» se convierte en «Roberto recomienda detener el proceso».",
+        "possible_revision": "Conservar la persona narrativa y la experiencia expresada.",
+        "abstain": "El autor solicita adaptar el pasaje a una ficha biográfica en tercera persona."
+      },
+      "exceptions": "Solo con comparación de origen o perfil explícito; respetar adaptación solicitada.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-042",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Experiencia o dato inventado",
+      "family": "fidelidad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "diff",
+        "phrases": [],
+        "method": "Comprobar detalles nuevos contra origen y material autorizado: recuerdos, cifras, nombres y citas.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Eliminar el detalle añadido o pedir la información real al autor.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "La propuesta añade «recuerdo cuando nuestro equipo ahorró un 30 %» sin fuente.",
+        "possible_revision": "Eliminar el detalle añadido o pedir la información real al autor.",
+        "abstain": "El dato está aportado por el autor y referenciado en el contexto."
+      },
+      "exceptions": "No inventar detalles para dar apariencia humana; separar ficción autorizada.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-043",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Cambio de certeza o condición",
+      "family": "fidelidad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "high",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "paragraph",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "diff",
+        "phrases": [],
+        "method": "Comparar negaciones, modalidad, cuantificadores y cláusulas condicionales.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Conservar posibilidad y condición original.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "«Puede reducir el tiempo si el PDF tiene texto» pasa a «reduce el tiempo con cualquier PDF».",
+        "possible_revision": "Conservar posibilidad y condición original.",
+        "abstain": "El autor aporta pruebas nuevas y aprueba cambiar la afirmación."
+      },
+      "exceptions": "No simplificar límites materiales ni sustituir hipótesis por hecho.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-044",
+      "version": "0.1.0",
+      "locale": "es-ES",
+      "name": "Pérdida de voz o accesibilidad oral",
+      "family": "fidelidad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "RC"
+      ],
+      "foundation": "author_editorial_design",
+      "scope": "section",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "context",
+        "phrases": [],
+        "method": "Revisar humor y opiniones frente al perfil; en material narrable comprobar referencias que dependen de lo visual.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Nombrar la condición o resultado; adaptar locución desde la misma fuente editorial.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "«Como muestra el bloque verde de la tabla» no se entiende en audio sin descripción.",
+        "possible_revision": "Nombrar la condición o resultado; adaptar locución desde la misma fuente editorial.",
+        "abstain": "Un documento exclusivamente visual explica la leyenda de su gráfico."
+      },
+      "exceptions": "No neutralizar provocaciones del autor ni afirmar pérdida de voz sin muestra o fuente; aplicar oralidad solo si corresponde.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    }
+  ]
+}

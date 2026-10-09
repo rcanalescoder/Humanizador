@@ -1,0 +1,746 @@
+{
+  "format_version": "1.0",
+  "catalogue_version": "0.3.0",
+  "date": "2026-10-06",
+  "locale": "es-ES",
+  "sources": [
+    {
+      "id": "TP",
+      "title": "humanizar-texto-es de toniperea, copia del registro",
+      "url": "https://github.com/majiayu000/claude-skill-registry/blob/baa7aad33924d121f544b221f7534cd500b310f8/skills/productivity/humanizar-texto-es-toniperea-humanizar-texto-es/SKILL.md",
+      "kind": "skill_review",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Once técnicas; adopción selectiva. Sin validación del baremo ni garantía es-ES."
+    },
+    {
+      "id": "AB",
+      "title": "Aboudjem / humanizer-skill",
+      "url": "https://github.com/Aboudjem/humanizer-skill/tree/a58df065367550b6ce40ff3f648335018d8e0589",
+      "kind": "skill_review",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Catálogo editorial amplio. Los patrones de inglés requieren adaptación; no demuestra autoría."
+    },
+    {
+      "id": "HN",
+      "title": "harshaneel / humanize",
+      "url": "https://github.com/harshaneel/humanize/tree/9c3dec34dc8e0ed9d26de14a869900a714da8f9e",
+      "kind": "skill_review",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Propuestas de reescritura y bibliografía; sus afirmaciones comerciales no son pruebas de eficacia en castellano."
+    },
+    {
+      "id": "WH",
+      "title": "human-writing-skills",
+      "url": "https://github.com/whh110112/human-writing-skills/tree/f6939121530e5bf9c29744546868d154c86fea3b",
+      "kind": "skill_review",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Continuidad de voz y contexto. Es un protocolo para modelos, no un detector reproducible."
+    },
+    {
+      "id": "RY",
+      "title": "RAE: raya",
+      "url": "https://www.rae.es/dpd/raya",
+      "kind": "language_reference",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Convenciones de incisos y diálogo. Ortografía, no indicio de IA."
+    },
+    {
+      "id": "RQ",
+      "title": "RAE: comillas",
+      "url": "https://www.rae.es/dpd/comillas",
+      "kind": "language_reference",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Jerarquía de citas y comillas de seguir según la convención editorial."
+    },
+    {
+      "id": "RP",
+      "title": "RAE: puntos suspensivos",
+      "url": "https://www.rae.es/dpd/puntos%20suspensivos",
+      "kind": "language_reference",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Puntuación y espacios. No mide naturalidad ni autoría."
+    },
+    {
+      "id": "CL",
+      "title": "ASALE: Guía panhispánica de lenguaje claro y accesible",
+      "url": "https://www.asale.org/sites/default/files/2025-10/Gu%C3%ADa%20panhisp%C3%A1nica%20de%20lenguaje%20claro%20y%20accesible.pdf",
+      "kind": "language_reference",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Claridad, referentes y nominalizaciones; aplicar según el género, sin simplificar literatura de forma indiscriminada."
+    },
+    {
+      "id": "LC",
+      "title": "LengClaro2023: A Corpus for the Evaluation of Automatic Text Simplification in Spanish",
+      "url": "https://arxiv.org/abs/2506.05927",
+      "kind": "research",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Corpus administrativo español; recurso para evaluar claridad. No detector de IA ni garantía de estilo es-ES."
+    },
+    {
+      "id": "SV",
+      "title": "Interpretable Stylistic Variation in Human and LLM Writing",
+      "url": "https://arxiv.org/abs/2604.14111",
+      "kind": "research",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Estudio sobre RAID: influencia del género y del modelo. No calibra nuestros umbrales en castellano."
+    },
+    {
+      "id": "TF",
+      "title": "Temporal Flattening: Longitudinal Patterns of Cognitive and Emotional Change",
+      "url": "https://aclanthology.org/2026.findings-acl.682/",
+      "kind": "research",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Análisis longitudinal. Mayor diversidad léxica de LLM en su muestra: no trasladar una regla universal al libro individual."
+    },
+    {
+      "id": "DM",
+      "title": "DAMAGE: Detecting Adversarially Modified AI Generated Text",
+      "url": "https://aclanthology.org/2025.genaidetect-1.9/",
+      "kind": "research",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Auditoría de 19 herramientas. Fluidez y fidelidad distintas de evasión. Autores de Pangram; no ensayo de Monica ni calibración es-ES."
+    },
+    {
+      "id": "MO",
+      "title": "Monica: Bypass AI",
+      "url": "https://monica.im/es/bypass-ai",
+      "kind": "product_claim",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Referencia del flujo analizar/reescribir. Página comercial sin algoritmo, catálogo abierto o evaluación reproducible."
+    },
+    {
+      "id": "UA",
+      "title": "Aportaciones del usuario: 57 entradas DLG y HUM",
+      "url": null,
+      "kind": "user_material",
+      "version": "Consultado el 2026-10-06",
+      "scope": "Se conservan como propuestas; duplicados, prompts y reglas se revisan por separado."
+    }
+  ],
+  "rules": [
+    {
+      "id": "HES-045",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Marcador de plantilla sin completar",
+      "family": "formato",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "AB"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "status": "implemented_candidate",
+        "type": "placeholder",
+        "phrases": [],
+        "method": "Sustituir únicamente con información confirmada; dejar pendiente lo desconocido.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Sustituir únicamente con información confirmada; dejar pendiente lo desconocido.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Nombre: [TU NOMBRE]",
+        "possible_revision": "Sustituir únicamente con información confirmada; dejar pendiente lo desconocido.",
+        "abstain": "El documento explica cómo usar [TU NOMBRE] en una plantilla."
+      },
+      "exceptions": "Los ejemplos de plantillas y la documentación técnica se conservan.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-046",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Marca interna de cita pegada al texto",
+      "family": "formato",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "AB"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "status": "implemented_candidate",
+        "type": "citation_markup",
+        "phrases": [],
+        "method": "Recuperar la referencia verificable antes de retirar el token.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Recuperar la referencia verificable antes de retirar el token.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "La fuente confirma el resultado contentReference[oaicite:0]{index=0}.",
+        "possible_revision": "Recuperar la referencia verificable antes de retirar el token.",
+        "abstain": "Un manual que explica la sintaxis de contentReference."
+      },
+      "exceptions": "Una marca técnica no demuestra que el argumento sea falso.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-047",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Caracteres invisibles o alfabetos mezclados",
+      "family": "formato",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "AB"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Examinar el carácter y su origen. No borrar controles de escritura legítimos.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Examinar el carácter y su origen. No borrar controles de escritura legítimos.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Una palabra castellana con una letra cirílica visualmente idéntica.",
+        "possible_revision": "Examinar el carácter y su origen. No borrar controles de escritura legítimos.",
+        "abstain": "Un nombre ruso citado con su grafía original."
+      },
+      "exceptions": "Los nombres, fórmulas, idiomas citados y fallos de extracción requieren otra interpretación.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-048",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Capacidad humana atribuida a una herramienta",
+      "family": "claridad",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "AB"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Identificar la operación observable y conservar las metáforas deliberadas.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Identificar la operación observable y conservar las metáforas deliberadas.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "El programa comprende tus aspiraciones y desea ayudarte.",
+        "possible_revision": "Identificar la operación observable y conservar las metáforas deliberadas.",
+        "abstain": "El autor usa una personificación con intención humorística."
+      },
+      "exceptions": "Revisión semántica; no sustituir palabras sin interpretar la afirmación.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-049",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Prestigio de una fuente sin explicar su aportación",
+      "family": "discurso",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "medium",
+      "source_ids": [
+        "AB"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Explicar qué sostiene la fuente y cómo interviene en el argumento.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Explicar qué sostiene la fuente y cómo interviene en el argumento.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Universidades y grandes consultoras avalan esta revolución.",
+        "possible_revision": "Explicar qué sostiene la fuente y cómo interviene en el argumento.",
+        "abstain": "Se identifica el estudio, su resultado y sus límites."
+      },
+      "exceptions": "Una relación bibliográfica real no exige reescribir todas las menciones.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-050",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Espacio tras la raya inicial del parlamento",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RY"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "En diálogo narrativo con raya, unirla al comienzo del parlamento.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "En diálogo narrativo con raya, unirla al comienzo del parlamento.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "— Hola, Ana.",
+        "possible_revision": "En diálogo narrativo con raya, unirla al comienzo del parlamento.",
+        "abstain": "—Hola, Ana."
+      },
+      "exceptions": "Antes hay que distinguir parlamento, lista e inciso; el PDF no conserva siempre el párrafo.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-051",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Raya de cierre innecesaria al final del inciso",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RY"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Si el inciso termina el párrafo sin volver al parlamento, revisar la raya final.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Si el inciso termina el párrafo sin volver al parlamento, revisar la raya final.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "—No voy —dijo Ana—.",
+        "possible_revision": "Si el inciso termina el párrafo sin volver al parlamento, revisar la raya final.",
+        "abstain": "—No voy —dijo Ana."
+      },
+      "exceptions": "Se necesita identificar inciso narrativo y final real del párrafo.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-052",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Mayúscula tras inciso de habla",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RY"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Comprobar el verbo de habla y la relación con el parlamento antes de corregir.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Comprobar el verbo de habla y la relación con el parlamento antes de corregir.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "—¿Vienes? —Preguntó Ana.",
+        "possible_revision": "Comprobar el verbo de habla y la relación con el parlamento antes de corregir.",
+        "abstain": "—¿Vienes? —preguntó Ana."
+      },
+      "exceptions": "Nombres propios, citas y otras funciones sintácticas no se resuelven con una lista de verbos.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-053",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Capitalización del inciso de acción",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RY"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Distinguir una acción independiente de un inciso dentro del enunciado.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Distinguir una acción independiente de un inciso dentro del enunciado.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "—¿Vienes? —ana cerró la puerta.",
+        "possible_revision": "Distinguir una acción independiente de un inciso dentro del enunciado.",
+        "abstain": "—No sé —cerró la puerta— si vendré."
+      },
+      "exceptions": "Un inciso intercalado puede empezar con minúscula aunque no incluya un verbo de habla.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-054",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Puntuación alrededor del inciso dialogado",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RY"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Revisar la posición del signo según la continuación sintáctica del parlamento.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Revisar la posición del signo según la continuación sintáctica del parlamento.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "—Vendré, —dijo Ana— si termino.",
+        "possible_revision": "Revisar la posición del signo según la continuación sintáctica del parlamento.",
+        "abstain": "—Vendré —dijo Ana— si termino."
+      },
+      "exceptions": "Preguntas, suspensiones y citas pueden requerir otra secuencia.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-055",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Continuación de parlamento en varios párrafos",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RQ"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Aplicar la convención elegida para indicar que sigue hablando el mismo personaje.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Aplicar la convención elegida para indicar que sigue hablando el mismo personaje.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Varios párrafos de un parlamento sin indicación de continuidad.",
+        "possible_revision": "Aplicar la convención elegida para indicar que sigue hablando el mismo personaje.",
+        "abstain": "Se usan comillas de seguir en la edición que adopta esa convención."
+      },
+      "exceptions": "No detectar a partir del salto de línea del PDF; exige estructura de párrafos.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-056",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Jerarquía incoherente de comillas",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "RQ"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Mantener una convención coherente para citas anidadas sin alterar su contenido.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Mantener una convención coherente para citas anidadas sin alterar su contenido.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Se abre una cita dentro de otra con el mismo signo ambiguo.",
+        "possible_revision": "Mantener una convención coherente para citas anidadas sin alterar su contenido.",
+        "abstain": "Comillas angulares, dobles y simples en niveles distintos."
+      },
+      "exceptions": "Respetar la convención de la obra y las citas literales.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-057",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Vocativos reiterados sin función",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "UA"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Leer los turnos juntos; conservar llamadas, énfasis y diferencias de trato.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Leer los turnos juntos; conservar llamadas, énfasis y diferencias de trato.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Ana, escucha, Ana. Ana, tenemos que salir.",
+        "possible_revision": "Leer los turnos juntos; conservar llamadas, énfasis y diferencias de trato.",
+        "abstain": "Ana repite el nombre para hacerse oír entre el ruido."
+      },
+      "exceptions": "La frecuencia aislada no permite decidir qué vocativo sobra.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-058",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Diálogo que explica lo que ambos personajes saben",
+      "family": "dialogo",
+      "status": "candidate",
+      "enabled_by_default": false,
+      "severity": "low",
+      "source_ids": [
+        "UA"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "context",
+      "detector": {
+        "status": "specification_not_implemented",
+        "type": "manual",
+        "phrases": [],
+        "method": "Comprobar qué sabe cada personaje y para quién sirve la explicación.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Comprobar qué sabe cada personaje y para quién sirve la explicación.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "Como sabes, soy tu hermano desde que naciste.",
+        "possible_revision": "Comprobar qué sabe cada personaje y para quién sirve la explicación.",
+        "abstain": "Un personaje ironiza o recuerda un dato para reprocharlo."
+      },
+      "exceptions": "No inventar acciones ni repartir gestos por cuotas.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-059",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Suspensión escrita con puntos de más",
+      "family": "formato",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "RP"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "status": "implemented_candidate",
+        "type": "ellipsis",
+        "phrases": [],
+        "method": "Revisar si se pretende usar puntos suspensivos; conservar el original hasta aprobar.",
+        "requires_context": true,
+        "threshold_status": "proposed_uncalibrated"
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Revisar si se pretende usar puntos suspensivos; conservar el original hasta aprobar.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "No sé.... quizá mañana.",
+        "possible_revision": "Revisar si se pretende usar puntos suspensivos; conservar el original hasta aprobar.",
+        "abstain": "No sé… quizá mañana."
+      },
+      "exceptions": "Una línea de puntos, una fórmula o un recurso literario deliberado requieren revisión.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    },
+    {
+      "id": "HES-060",
+      "version": "0.3.0",
+      "locale": "es-ES",
+      "name": "Rastro de razonamiento interno sin editar",
+      "family": "formato",
+      "status": "candidate",
+      "enabled_by_default": true,
+      "severity": "medium",
+      "source_ids": [
+        "AB"
+      ],
+      "foundation": "editorial_specification",
+      "scope": "sentence",
+      "detector": {
+        "status": "implemented_candidate",
+        "type": "reasoning_tag",
+        "phrases": [],
+        "method": "Comprobar si el bloque pertenece al documento final; no borrar ejemplos técnicos.",
+        "requires_context": true,
+        "threshold_status": null
+      },
+      "proposal": {
+        "mode": "review_required",
+        "guidance": "Comprobar si el bloque pertenece al documento final; no borrar ejemplos técnicos.",
+        "automatic_application": false
+      },
+      "examples": {
+        "review_candidate": "<think>Voy a construir la respuesta.</think>",
+        "possible_revision": "Comprobar si el bloque pertenece al documento final; no borrar ejemplos técnicos.",
+        "abstain": "Un manual documenta el uso del token <think>."
+      },
+      "exceptions": "Solo marca delimitadores literales; no determina si el razonamiento en prosa es pertinente.",
+      "validation": {
+        "corpus_evaluated": false,
+        "precision": null,
+        "false_positive_rate": null
+      }
+    }
+  ]
+}

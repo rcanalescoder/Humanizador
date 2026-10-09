@@ -1,0 +1,20 @@
+node_modules
+dist
+data
+.git
+.env*
+*.log
+test-results
+
+evaluation/privada/
+evaluation/intermedios/
+
+# Material de trabajo privado; nunca forma parte de la publicación.
+privado/
+*.pdf
+*.sqlite*
+*.db
+*.db-*
+*edicion-pdf-para-ia*.json
+*.pem
+*.key

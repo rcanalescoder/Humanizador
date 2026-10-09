@@ -1,0 +1,300 @@
+{
+  "date": "2026-10-07",
+  "source_pdf_sha256": null,
+  "offset_unit": "unicode_code_points",
+  "scope": "Diez casos nuevos redactados y etiquetados antes de ejecutar el candidato mejorado. No se enviarán sus etiquetas al modelo.",
+  "cases": [
+    {
+      "id": "NUEVO-P1",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-P1",
+      "block_sha256": "fd450268f617c805bba8eb2a021edc6e77551246ae5bbaf7bf9803478795ccea",
+      "start": 0,
+      "end": 125,
+      "quote": "La realización de la ejecución de la puesta en marcha del servicio requiere la comprobación del cumplimiento de los acuerdos.",
+      "judgment": "problema",
+      "evidence": "Cadena redundante de nombres de acción; conservar la obligación de comprobar el cumplimiento.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-P2",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-P2",
+      "block_sha256": "c3862d0decf37b3f09b1bd7dcde3da47d083e8e7a6f4ff00fdb16e04f7cfb3da",
+      "start": 0,
+      "end": 104,
+      "quote": "El equipo ha cambiado el color del tablero. Por eso, el próximo trimestre las ventas aumentarán un 30 %.",
+      "judgment": "problema",
+      "evidence": "La relación causal y el incremento numérico no tienen apoyo en el contexto. No inventar cifras alternativas.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-P3",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-P3",
+      "block_sha256": "43f138258176437e53b6a9a7eefa318e52c8280fb21836762744ed92e749f002",
+      "start": 0,
+      "end": 126,
+      "quote": "El expediente está pendiente de una aprobación. Esto significa que aún no se ha aprobado. Dicho de otro modo, falta aprobarlo.",
+      "judgment": "problema",
+      "evidence": "Tres formulaciones de la misma proposición sin explicación ni consecuencia nueva.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-P4",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-P4",
+      "block_sha256": "2fc3c2b06d0f535fdd4d8dd86a424368f4ec6486d39a4c54ef03869a04fee96a",
+      "start": 0,
+      "end": 144,
+      "quote": "Esta guía se dirige a una sola persona. Revisa tu ficha antes de enviarla. Si usted encuentra un error, corrige tus datos y vuelve a intentarlo.",
+      "judgment": "problema",
+      "evidence": "Mezcla tú y usted dentro de la misma instrucción a un destinatario, sin cambio de situación.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-N1",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-N1",
+      "block_sha256": "38aca6f31cc90b0c904a6042a938322872d54f856501fa7415c44ab2371f73ce",
+      "start": 0,
+      "end": 119,
+      "quote": "La aprobación de la solicitud corresponde a Marta. Luis revisa los datos y le envía las discrepancias antes del jueves.",
+      "judgment": "conservar",
+      "evidence": "Nombres de acción con responsable y orden claros; no existe una cadena opaca.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-N2",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-N2",
+      "block_sha256": "f4b81f99378de1af0d7d83282e938f782ba6864747ee16743056eedb03a1b473",
+      "start": 0,
+      "end": 178,
+      "quote": "El proveedor entrega los paquetes de cuarenta en cuarenta. Para probar antes, le hemos pedido dos entregas de veinte. Así podremos revisar la primera mientras prepara la segunda.",
+      "judgment": "conservar",
+      "evidence": "Relación entre lotes y revisión anticipada expresamente desarrollada.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-N3",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-N3",
+      "block_sha256": "7b1510c76339dfba0225aab3e09b37556c17d2438fdc77e735d816347fa05d85",
+      "start": 0,
+      "end": 153,
+      "quote": "Hasta aquí hemos explicado cómo pedir una revisión. Ahora pasamos al calendario de guardias, que también necesitarás consultar durante tu primera semana.",
+      "judgment": "conservar",
+      "evidence": "Cambio de tema declarado y orientación al lector; no finge una relación causal entre asuntos.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-N4",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-N4",
+      "block_sha256": "f949f511fbbedd196ec54c5123d781d88133de0d8208bb8cd621e30141b9df90",
+      "start": 0,
+      "end": 170,
+      "quote": "En el taller digo que nuestro calendario tiene más curvas que la carretera del pueblo. Es una broma: cambiamos las fechas cuando aparece trabajo que no habíamos previsto.",
+      "judgment": "conservar",
+      "evidence": "Humor explícito con explicación; no invalidar la imagen al leerla literalmente.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-N5",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-N5",
+      "block_sha256": "f492c702cba3e7c0e0cdd809897e818432578e78143299a05d77f76319d2f0fc",
+      "start": 0,
+      "end": 178,
+      "quote": "Podemos adelantar el envío si el proveedor confirma las piezas hoy. Parte del equipo tendrá que revisar el lote antes de las cinco; si no termina, mantendremos la fecha acordada.",
+      "judgment": "conservar",
+      "evidence": "Condiciones y alcance cambian el significado; no son matización superflua.",
+      "proposed_replacement": null,
+      "context_pages": []
+    },
+    {
+      "id": "NUEVO-N6",
+      "kind": "control_nuevo",
+      "page": null,
+      "block_id": "NUEVO-N6",
+      "block_sha256": "9c9f723136640c1f2e887a32f19a56226ff299b888de3fc78673e0b0554028ba",
+      "start": 0,
+      "end": 209,
+      "quote": "La coordinación evita que prometamos dos fechas distintas al mismo cliente: Ana confirma el plazo y Luis lo comunica. No basta con entregar deprisa; el cliente también necesita saber cuándo recibirá su pedido.",
+      "judgment": "conservar",
+      "evidence": "Término abstracto y contraste apoyados por acciones y responsables.",
+      "proposed_replacement": null,
+      "context_pages": []
+    }
+  ],
+  "samples": [
+    {
+      "id": "NUEVO-P1",
+      "target_block_id": "NUEVO-P1",
+      "blocks": [
+        {
+          "id": "NUEVO-P1",
+          "page": 1,
+          "text": "La realización de la ejecución de la puesta en marcha del servicio requiere la comprobación del cumplimiento de los acuerdos.",
+          "sha256": "fd450268f617c805bba8eb2a021edc6e77551246ae5bbaf7bf9803478795ccea"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-P1"
+      ]
+    },
+    {
+      "id": "NUEVO-P2",
+      "target_block_id": "NUEVO-P2",
+      "blocks": [
+        {
+          "id": "NUEVO-P2",
+          "page": 1,
+          "text": "El equipo ha cambiado el color del tablero. Por eso, el próximo trimestre las ventas aumentarán un 30 %.",
+          "sha256": "c3862d0decf37b3f09b1bd7dcde3da47d083e8e7a6f4ff00fdb16e04f7cfb3da"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-P2"
+      ]
+    },
+    {
+      "id": "NUEVO-P3",
+      "target_block_id": "NUEVO-P3",
+      "blocks": [
+        {
+          "id": "NUEVO-P3",
+          "page": 1,
+          "text": "El expediente está pendiente de una aprobación. Esto significa que aún no se ha aprobado. Dicho de otro modo, falta aprobarlo.",
+          "sha256": "43f138258176437e53b6a9a7eefa318e52c8280fb21836762744ed92e749f002"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-P3"
+      ]
+    },
+    {
+      "id": "NUEVO-P4",
+      "target_block_id": "NUEVO-P4",
+      "blocks": [
+        {
+          "id": "NUEVO-P4",
+          "page": 1,
+          "text": "Esta guía se dirige a una sola persona. Revisa tu ficha antes de enviarla. Si usted encuentra un error, corrige tus datos y vuelve a intentarlo.",
+          "sha256": "2fc3c2b06d0f535fdd4d8dd86a424368f4ec6486d39a4c54ef03869a04fee96a"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-P4"
+      ]
+    },
+    {
+      "id": "NUEVO-N1",
+      "target_block_id": "NUEVO-N1",
+      "blocks": [
+        {
+          "id": "NUEVO-N1",
+          "page": 1,
+          "text": "La aprobación de la solicitud corresponde a Marta. Luis revisa los datos y le envía las discrepancias antes del jueves.",
+          "sha256": "38aca6f31cc90b0c904a6042a938322872d54f856501fa7415c44ab2371f73ce"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-N1"
+      ]
+    },
+    {
+      "id": "NUEVO-N2",
+      "target_block_id": "NUEVO-N2",
+      "blocks": [
+        {
+          "id": "NUEVO-N2",
+          "page": 1,
+          "text": "El proveedor entrega los paquetes de cuarenta en cuarenta. Para probar antes, le hemos pedido dos entregas de veinte. Así podremos revisar la primera mientras prepara la segunda.",
+          "sha256": "f4b81f99378de1af0d7d83282e938f782ba6864747ee16743056eedb03a1b473"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-N2"
+      ]
+    },
+    {
+      "id": "NUEVO-N3",
+      "target_block_id": "NUEVO-N3",
+      "blocks": [
+        {
+          "id": "NUEVO-N3",
+          "page": 1,
+          "text": "Hasta aquí hemos explicado cómo pedir una revisión. Ahora pasamos al calendario de guardias, que también necesitarás consultar durante tu primera semana.",
+          "sha256": "7b1510c76339dfba0225aab3e09b37556c17d2438fdc77e735d816347fa05d85"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-N3"
+      ]
+    },
+    {
+      "id": "NUEVO-N4",
+      "target_block_id": "NUEVO-N4",
+      "blocks": [
+        {
+          "id": "NUEVO-N4",
+          "page": 1,
+          "text": "En el taller digo que nuestro calendario tiene más curvas que la carretera del pueblo. Es una broma: cambiamos las fechas cuando aparece trabajo que no habíamos previsto.",
+          "sha256": "f949f511fbbedd196ec54c5123d781d88133de0d8208bb8cd621e30141b9df90"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-N4"
+      ]
+    },
+    {
+      "id": "NUEVO-N5",
+      "target_block_id": "NUEVO-N5",
+      "blocks": [
+        {
+          "id": "NUEVO-N5",
+          "page": 1,
+          "text": "Podemos adelantar el envío si el proveedor confirma las piezas hoy. Parte del equipo tendrá que revisar el lote antes de las cinco; si no termina, mantendremos la fecha acordada.",
+          "sha256": "f492c702cba3e7c0e0cdd809897e818432578e78143299a05d77f76319d2f0fc"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-N5"
+      ]
+    },
+    {
+      "id": "NUEVO-N6",
+      "target_block_id": "NUEVO-N6",
+      "blocks": [
+        {
+          "id": "NUEVO-N6",
+          "page": 1,
+          "text": "La coordinación evita que prometamos dos fechas distintas al mismo cliente: Ana confirma el plazo y Luis lo comunica. No basta con entregar deprisa; el cliente también necesita saber cuándo recibirá su pedido.",
+          "sha256": "9c9f723136640c1f2e887a32f19a56226ff299b888de3fc78673e0b0554028ba"
+        }
+      ],
+      "case_ids": [
+        "NUEVO-N6"
+      ]
+    }
+  ]
+}

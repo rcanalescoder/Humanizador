@@ -1,0 +1,345 @@
+{
+  "version": "1.0.0",
+  "reviewed_at": "2026-10-07",
+  "sources": [
+    {
+      "id": "PG26",
+      "title": "Pangram: nueve señales de escritura",
+      "kind": "commercial_primary",
+      "url": "https://www.pangram.com/signs-of-ai-writing",
+      "version": "Consulta y auditoría: 2026-10-07",
+      "scope": "Observaciones comerciales de frecuencia. La página no ofrece una calibración editorial es-ES; las nueve señales tampoco son entradas de su detector principal.",
+      "assessment": "Útil para proponer casos. No importar multiplicadores, pesos ni probabilidades de autoría. El enlace de Pasquale aportado por Claude es una explicación secundaria de esta fuente."
+    },
+    {
+      "id": "HM26",
+      "title": "HowManyWords: diez señales en ensayos",
+      "kind": "commercial_secondary",
+      "url": "https://howmanywords.app/es/blog/senales-de-que-tu-ensayo-fue-escrito-por-ia",
+      "version": "Consulta y auditoría: 2026-10-07",
+      "scope": "Lista comercial de pistas de estilo, con afirmaciones estadísticas que requieren comprobación independiente.",
+      "assessment": "Referencia mal utilizada: atribuye a DetectGPT que la uniformidad de longitud es la señal más fuerte. DetectGPT estudia curvatura de logprobabilidades y perturbaciones. Esa atribución se rechaza."
+    },
+    {
+      "id": "DGPT23",
+      "title": "Mitchell et al.: DetectGPT (ICML 2023)",
+      "kind": "peer_reviewed_method",
+      "url": "https://proceedings.mlr.press/v202/mitchell23a.html",
+      "version": "Consulta y auditoría: 2026-10-07",
+      "scope": "Método de detección mediante logprobabilidades y perturbaciones de pasajes, condicionado al modelo evaluado.",
+      "assessment": "Sirve para corregir la cita de HowManyWords. No respalda un umbral de palabras por frase ni una corrección editorial automática. No está implementado en Humanizador."
+    },
+    {
+      "id": "NIH25",
+      "title": "NIH: verbos de acción y voz activa",
+      "kind": "editorial_primary",
+      "url": "https://www.nih.gov/nih-style-guide/grammar-punctuation",
+      "version": "Consulta y auditoría: 2026-10-07",
+      "scope": "Guía editorial institucional en inglés: preferir verbos si aclaran la acción y conservar la pasiva cuando el agente no importa o se desconoce.",
+      "assessment": "El criterio funcional se adapta al castellano. No se importan reglas inglesas de puntuación ni se eliminan términos técnicos por terminar en -ción."
+    },
+    {
+      "id": "PURDUE",
+      "title": "Purdue OWL: transiciones entre párrafos",
+      "kind": "editorial_primary",
+      "url": "https://owl.purdue.edu/owl/general_writing/mechanics/transitions_and_transitional_devices/index.html",
+      "version": "Consulta y auditoría: 2026-10-07",
+      "scope": "Guía editorial: una transición debe explicar la relación entre los párrafos concretos que conecta.",
+      "assessment": "Aplicable al razonamiento en castellano. El modelo debe leer ambos lados del enlace y no inventar causalidad al corregirlo."
+    },
+    {
+      "id": "GOOG26",
+      "title": "Google: voz y tono en documentación",
+      "kind": "editorial_primary",
+      "url": "https://developers.google.com/style/tone",
+      "version": "Consulta y auditoría: 2026-10-07",
+      "scope": "Guía para documentación técnica: claridad, anuncios vacíos, comienzos repetidos y ritmo entrecortado.",
+      "assessment": "Respalda revisar la función de estas formas. Sus preferencias sobre humor, metáforas y referencias culturales no se trasladan al ensayo personal de Roberto."
+    },
+    {
+      "id": "SCS23",
+      "title": "Schaaff, Schlippe y Mindner: cuatro idiomas (ICNLSP 2023)",
+      "kind": "peer_reviewed_study",
+      "url": "https://aclanthology.org/2023.icnlsp-1.1/",
+      "version": "Consulta y auditoría: 2026-10-07",
+      "scope": "Experimento con 37 características, generación y reformulación, incluido español. Estaba ya recogido en la investigación del proyecto.",
+      "assessment": "Estudia clasificación de textos; sus resultados no validan las frases detectadas por Humanizador. Faltó ejecutar nuestra evaluación por regla y género antes de atribuir calidad al catálogo."
+    },
+    {
+      "id": "LING26",
+      "title": "El Attar et al.: características entre modelos y dominios",
+      "kind": "preprint",
+      "url": "https://arxiv.org/html/2606.04177v1",
+      "version": "Consulta y auditoría: 2026-10-07",
+      "scope": "Preprint de junio de 2026: 284 características, 27 modelos y diez dominios en inglés; estudia generalización entre conjuntos.",
+      "assessment": "Propone investigar riqueza léxica, sin umbral español validado. Su apéndice C.4.3 afirma mayor TTR humano, pero da 0,6 humano y 0,8 IA: esa dirección requiere aclaración y no se adopta como regla."
+    }
+  ],
+  "coverage": [
+    {
+      "id": "PG-01",
+      "source_id": "PG26",
+      "signal": "Markdown fuera de contexto",
+      "decision": "pending",
+      "rule_ids": [],
+      "detail": "No hay detector dedicado. Requiere distinguir sintaxis escrita de formato real y ejemplos técnicos.",
+      "tests": []
+    },
+    {
+      "id": "PG-02",
+      "source_id": "PG26",
+      "signal": "Fórmulas léxicas",
+      "decision": "partial",
+      "rule_ids": [
+        "HES-001",
+        "HES-004",
+        "HES-005",
+        "HES-006"
+      ],
+      "detail": "Lista española acotada; no cubre todas las expresiones de la fuente ni traslada sus frecuencias.",
+      "tests": [
+        "test/core.test.mjs"
+      ]
+    },
+    {
+      "id": "PG-03",
+      "source_id": "PG26",
+      "signal": "Rayas",
+      "decision": "pending",
+      "rule_ids": [
+        "HES-022"
+      ],
+      "detail": "Ficha sin detector. El diálogo y los incisos legítimos requieren tratamiento español.",
+      "tests": []
+    },
+    {
+      "id": "PG-04",
+      "source_id": "PG26",
+      "signal": "Listas",
+      "decision": "pending",
+      "rule_ids": [
+        "HES-034"
+      ],
+      "detail": "La ficha exige comprobar si la enumeración reemplaza una explicación necesaria.",
+      "tests": []
+    },
+    {
+      "id": "PG-05",
+      "source_id": "PG26",
+      "signal": "Tríadas",
+      "decision": "pending",
+      "rule_ids": [
+        "HES-015"
+      ],
+      "detail": "No hay detector ni umbral calibrado; tres elementos pueden ser los que necesita el argumento.",
+      "tests": []
+    },
+    {
+      "id": "PG-06",
+      "source_id": "PG26",
+      "signal": "No solo X, sino también Y",
+      "decision": "partial",
+      "rule_ids": [
+        "HES-013",
+        "HES-071"
+      ],
+      "detail": "HES-013 reconoce «no es X, sino Y», no esta construcción aditiva. Ollama revisa oposiciones vacías; no garantiza detectar la variante.",
+      "tests": [
+        "test/patterns.test.mjs"
+      ]
+    },
+    {
+      "id": "PG-07",
+      "source_id": "PG26",
+      "signal": "Unicode inusual",
+      "decision": "pending",
+      "rule_ids": [],
+      "detail": "HES-047 trata caracteres invisibles y alfabetos mezclados: no equivale a esta señal. Símbolos matemáticos y flechas pueden ser necesarios.",
+      "tests": []
+    },
+    {
+      "id": "PG-08",
+      "source_id": "PG26",
+      "signal": "Aperturas conversacionales",
+      "decision": "adapted",
+      "rule_ids": [
+        "HES-036"
+      ],
+      "detail": "Se amplía la comprobación a aperturas españolas al inicio de párrafo, conservando exclusiones. No abarca toda la familia inglesa.",
+      "tests": [
+        "test/patterns.test.mjs"
+      ]
+    },
+    {
+      "id": "PG-09",
+      "source_id": "PG26",
+      "signal": "Emojis",
+      "decision": "pending",
+      "rule_ids": [],
+      "detail": "No hay detector dedicado ni criterio de defecto por mera presencia.",
+      "tests": []
+    },
+    {
+      "id": "HM-01",
+      "source_id": "HM26",
+      "signal": "Longitud uniforme",
+      "decision": "rejected",
+      "rule_ids": [
+        "HES-024"
+      ],
+      "detail": "Se rechaza el respaldo atribuido a DetectGPT. La ficha de ritmo sigue pendiente; no se adopta un umbral universal.",
+      "tests": []
+    },
+    {
+      "id": "HM-02",
+      "source_id": "HM26",
+      "signal": "Clichés",
+      "decision": "partial",
+      "rule_ids": [
+        "HES-001",
+        "HES-002",
+        "HES-004"
+      ],
+      "detail": "Coincidencias de una selección española; la acumulación necesita contexto.",
+      "tests": [
+        "test/core.test.mjs"
+      ]
+    },
+    {
+      "id": "HM-03",
+      "source_id": "HM26",
+      "signal": "Ejemplos vagos",
+      "decision": "partial",
+      "rule_ids": [
+        "HES-076",
+        "HES-078"
+      ],
+      "detail": "Ollama puede señalar abstracciones sin acción o consejos sin concreción; no verifica todos los ejemplos.",
+      "tests": [
+        "evaluation/es-ES/editorial-cases.json"
+      ]
+    },
+    {
+      "id": "HM-04",
+      "source_id": "HM26",
+      "signal": "Rayas y punto y coma",
+      "decision": "pending",
+      "rule_ids": [
+        "HES-022"
+      ],
+      "detail": "Rayas solo especificadas; punto y coma sin detector. No se importan los umbrales del blog.",
+      "tests": []
+    },
+    {
+      "id": "HM-05",
+      "source_id": "HM26",
+      "signal": "Estructura de cinco párrafos",
+      "decision": "pending",
+      "rule_ids": [],
+      "detail": "No hay analizador de esta plantilla. Una estructura escolar legítima no basta para marcar un problema.",
+      "tests": []
+    },
+    {
+      "id": "HM-06",
+      "source_id": "HM26",
+      "signal": "Conclusión repetida",
+      "decision": "partial",
+      "rule_ids": [
+        "HES-025",
+        "HES-069"
+      ],
+      "detail": "Ollama compara contexto cercano. No hay comprobación sistemática entre introducción y cierre del documento.",
+      "tests": []
+    },
+    {
+      "id": "HM-07",
+      "source_id": "HM26",
+      "signal": "Transiciones genéricas",
+      "decision": "partial",
+      "rule_ids": [
+        "HES-029",
+        "HES-080"
+      ],
+      "detail": "Ollama revisa enlaces locales. La evaluación previa conserva una omisión conocida de transición causal; falta validación independiente.",
+      "tests": [
+        "evaluation/es-ES/editorial-cases.json"
+      ]
+    },
+    {
+      "id": "HM-08",
+      "source_id": "HM26",
+      "signal": "Falta de voz personal",
+      "decision": "rejected",
+      "rule_ids": [
+        "HES-044"
+      ],
+      "detail": "No exigir opiniones ni anécdotas en todo género. La ficha protege la voz existente; no autoriza fabricarla.",
+      "tests": []
+    },
+    {
+      "id": "HM-09",
+      "source_id": "HM26",
+      "signal": "Análisis superficial",
+      "decision": "partial",
+      "rule_ids": [
+        "HES-076"
+      ],
+      "detail": "Criterio local de contenido intercambiable; no es una evaluación de profundidad global del argumento.",
+      "tests": [
+        "evaluation/es-ES/editorial-cases.json"
+      ]
+    },
+    {
+      "id": "HM-10",
+      "source_id": "HM26",
+      "signal": "Citas o detalles inventados",
+      "decision": "pending",
+      "rule_ids": [],
+      "detail": "HES-042 compara una propuesta con su origen; no verifica referencias externas. HES-046 detecta marcadores rotos, no citas falsas.",
+      "tests": []
+    },
+    {
+      "id": "NIH-01",
+      "source_id": "NIH25",
+      "signal": "Acciones ocultas en sustantivos",
+      "decision": "adapted",
+      "rule_ids": [
+        "HES-011",
+        "HES-072"
+      ],
+      "detail": "Patrones españoles acotados y lectura local de cadenas nominales. Conservar conceptos técnicos, sujetos y condiciones.",
+      "tests": [
+        "test/patterns.test.mjs",
+        "evaluation/es-ES/editorial-cases.json"
+      ]
+    },
+    {
+      "id": "PURDUE-01",
+      "source_id": "PURDUE",
+      "signal": "Conexión entre párrafos concretos",
+      "decision": "adapted",
+      "rule_ids": [
+        "HES-080"
+      ],
+      "detail": "La regla ya pide justificar el enlace con sus vecinos. Respaldo editorial añadido después de implementarla, no validación de su precisión.",
+      "tests": [
+        "evaluation/es-ES/editorial-cases.json"
+      ]
+    },
+    {
+      "id": "GOOG-01",
+      "source_id": "GOOG26",
+      "signal": "Anuncios, comienzos repetidos y ritmo",
+      "decision": "partial",
+      "rule_ids": [
+        "HES-001",
+        "HES-016",
+        "HES-020"
+      ],
+      "detail": "Transferencia funcional ya implementada, con exclusiones de narrativa; las cifras de las ventanas son heurísticas propias.",
+      "tests": [
+        "test/patterns.test.mjs"
+      ]
+    }
+  ]
+}

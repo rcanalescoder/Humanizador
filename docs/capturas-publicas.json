@@ -1,0 +1,15 @@
+{
+  "authorization": "El autor autorizó utilizar capturas de su proyecto para GitHub, el manual y hardMent el 2026-10-09. No autoriza distribuir el documento ni las notas completas.",
+  "assets": [
+    {
+      "path": "manual/assets/navegacion-pdf.jpg",
+      "bytes": 41031,
+      "sha256": "97193b870740a85477667c4775b528908125440a080e8573ab7932f4758b79f5"
+    },
+    {
+      "path": "manual/assets/revision-pdf.png",
+      "bytes": 1038308,
+      "sha256": "cafafbfaf4fb25bf8c80b3e8c4cd40da821efc26f6d03dbd2809fd6263370bc7"
+    }
+  ]
+}

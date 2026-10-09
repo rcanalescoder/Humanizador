@@ -1,0 +1,291 @@
+{
+  "date": "2026-10-06",
+  "entries": [
+    {
+      "id": "DLG_001_CHARACTER_TYPE",
+      "attachment": 1,
+      "decision": "Reformular: raya en diálogo narrativo; no prohibir otras convenciones ni exigir un único código Unicode."
+    },
+    {
+      "id": "DLG_002_PARAGRAPH_INDENTATION",
+      "attachment": 1,
+      "decision": "Parcial: separar párrafos; sangría y estructura no se verifican con texto PDF plano."
+    },
+    {
+      "id": "DLG_003_INCISO_SPACING",
+      "attachment": 1,
+      "decision": "Aceptar con contexto sintáctico; no confundir raya de diálogo e inciso."
+    },
+    {
+      "id": "DLG_004_CLOSING_DASH_OMISSION",
+      "attachment": 1,
+      "decision": "Aceptar: comprobar final real del inciso y del párrafo."
+    },
+    {
+      "id": "DLG_005_VERBOS_DICENDI",
+      "attachment": 1,
+      "decision": "Aceptar con análisis del verbo y del parlamento; no basta una lista léxica."
+    },
+    {
+      "id": "DLG_006_VERBOS_NO_DICENDI",
+      "attachment": 1,
+      "decision": "Corregir: el inciso intercalado puede empezar en minúscula aunque no sea un verbo de habla."
+    },
+    {
+      "id": "DLG_007_MULTIPARAGRAPH_SPEECH",
+      "attachment": 1,
+      "decision": "Aceptar como convención editorial; necesita párrafos reconocibles."
+    },
+    {
+      "id": "DLG_008_NESTED_DIALOGUE",
+      "attachment": 1,
+      "decision": "Aceptar coherencia de citas anidadas; respetar el criterio de la obra."
+    },
+    {
+      "id": "DLG_009_DIRECT_THOUGHTS",
+      "attachment": 1,
+      "decision": "Preferencia de obra, no regla universal de pensamientos."
+    },
+    {
+      "id": "HUM_001_BURSTINESS_METRIC",
+      "attachment": 1,
+      "decision": "Métrica exploratoria de ritmo; no alternar longitudes por cuotas."
+    },
+    {
+      "id": "HUM_002_PERPLEXITY_ENHANCEMENT",
+      "attachment": 1,
+      "decision": "Rechazar la perplejidad como objetivo editorial; no introducir vocabulario raro para engañar un detector."
+    },
+    {
+      "id": "HUM_003_LEXICAL_PURGE_MATRIX",
+      "attachment": 1,
+      "decision": "Reformular como indicios de contexto; no llamar marcas de agua a palabras habituales."
+    },
+    {
+      "id": "HUM_004_SYNTACTIC_PATTERNS_PURGE",
+      "attachment": 1,
+      "decision": "Integrar en contraste, tríadas y recapitulación existentes, conservando su función."
+    },
+    {
+      "id": "HUM_005_PENINSULAR_LOCALIZATION",
+      "attachment": 1,
+      "decision": "Aceptar perfil es-ES y trato consistente; no prohibir palabras válidas ni inyectar muletillas."
+    },
+    {
+      "id": "HUM_006_SPECIFICITY_INJECTION",
+      "attachment": 1,
+      "decision": "Rechazar datos y anécdotas inventados; pedir concreción basada en fuentes."
+    },
+    {
+      "id": "DLG_010_VOCATIVE_OVERUSE",
+      "attachment": 2,
+      "decision": "Revisión contextual de vocativos; frecuencia no equivale a fallo."
+    },
+    {
+      "id": "DLG_011_NARRATIVE_PAUSE_PREVENTION",
+      "attachment": 2,
+      "decision": "Rechazar la cuota de acciones cada tres turnos; no inventar gestos."
+    },
+    {
+      "id": "DLG_012_ELLIPSIS_IN_DIALOGUE",
+      "attachment": 2,
+      "decision": "Aceptar puntuación de suspensión; no censurar su uso expresivo."
+    },
+    {
+      "id": "DLG_013_COLON_IN_INCISO",
+      "attachment": 2,
+      "decision": "Aceptar con análisis del inciso y de su continuación."
+    },
+    {
+      "id": "DLG_014_THOUGHTS_AND_REFLECTION_VERBS",
+      "attachment": 2,
+      "decision": "Revisión narrativa, sin obligación de exteriorizar cada pensamiento."
+    },
+    {
+      "id": "DLG_015_MECHANICAL_MEDIA_DIALOGUE",
+      "attachment": 2,
+      "decision": "Preferencia de convención para medios o telepatía, fuera del perfil general."
+    },
+    {
+      "id": "DLG_016_REGISTER_SANITY",
+      "attachment": 2,
+      "decision": "Aceptar continuidad del registro por personaje; no uniformar todos."
+    },
+    {
+      "id": "HUM_007_EDITOR_PROMPT",
+      "attachment": 2,
+      "decision": "Protocolo de revisión, no detector."
+    },
+    {
+      "id": "HUM_008_THOUGHT_FLOW_PROMPT",
+      "attachment": 2,
+      "decision": "Protocolo a reformular: preservar el hilo y no añadir incorrecciones."
+    },
+    {
+      "id": "HUM_009_PATTERN_BREAKER_PROMPT",
+      "attachment": 2,
+      "decision": "Protocolo de revisión de patrones, no regla ejecutable."
+    },
+    {
+      "id": "HUM_010_READER_CENTRIC_PROMPT",
+      "attachment": 2,
+      "decision": "Protocolo de adecuación al lector, no detector."
+    },
+    {
+      "id": "HUM_011_FIRST_SENTENCE_HOOK",
+      "attachment": 2,
+      "decision": "Revisión de apertura genérica; no imponer un gancho a todos los textos."
+    },
+    {
+      "id": "HUM_012_ENTITY_PROTECTION",
+      "attachment": 2,
+      "decision": "Aceptar protección de hechos, entidades y nombres."
+    },
+    {
+      "id": "HUM_013_PERFECT_GRAMMAR_DISMANTLING",
+      "attachment": 2,
+      "decision": "Rechazar errores o gramática defectuosa para aparentar humanidad."
+    },
+    {
+      "id": "DLG_017_PUNCTUATION_POST_INCISO",
+      "attachment": 3,
+      "decision": "Integrar en la ficha de puntuación alrededor del inciso."
+    },
+    {
+      "id": "DLG_018_PUNTOS_SUSPENSIVOS_FORMATTING",
+      "attachment": 3,
+      "decision": "Duplicada de DLG_012: consolidar."
+    },
+    {
+      "id": "DLG_019_DOS_PUNTOS_TRAS_VERBO_CONTINUACION",
+      "attachment": 3,
+      "decision": "Duplicada de DLG_013: consolidar."
+    },
+    {
+      "id": "DLG_020_INTERRUPCIONES_Y_FRASES_INCOMPLETAS",
+      "attachment": 3,
+      "decision": "Revisión contextual de interrupción y suspensión, sin añadirlas a todo diálogo."
+    },
+    {
+      "id": "DLG_021_NARRACION_EXTENSA_INTERCORTANDO_DISCURSO",
+      "attachment": 3,
+      "decision": "Revisión narrativa del monólogo; no cortar por longitud fija."
+    },
+    {
+      "id": "DLG_022_ACCIONES_SIMULTANEAS_EN_INCISO",
+      "attachment": 3,
+      "decision": "Conservar reacciones existentes; no inventarlas para humanizar."
+    },
+    {
+      "id": "DLG_023_PROHIBICION_DE_VERBOS_REBUSCADOS",
+      "attachment": 3,
+      "decision": "Preferir verbos claros cuando convenga; no vetar verbos expresivos."
+    },
+    {
+      "id": "HUM_014_OVERUSE_OF_PARENTHETICAL_DASHES",
+      "attachment": 3,
+      "decision": "Integrar en HES-022: distinguir funciones y no prohibir rayas."
+    },
+    {
+      "id": "HUM_015_NO_COMPLACENCY_AND_CONFLICT",
+      "attachment": 3,
+      "decision": "Rechazar opiniones o conflictos inventados; conservar los propios."
+    },
+    {
+      "id": "HUM_016_FEW_SHOT_STYLISTIC_PROMPT",
+      "attachment": 3,
+      "decision": "Protocolo de comparación con muestras reales de la voz del autor."
+    },
+    {
+      "id": "HUM_017_PROHIBITION_OF_CLOSING_SUMMARIES",
+      "attachment": 3,
+      "decision": "Integrar en HES-002 y HES-025; conservar recapitulaciones útiles."
+    },
+    {
+      "id": "HUM_018_SPECIFICITY_TEST",
+      "attachment": 3,
+      "decision": "Duplicada de HUM_006; no fabricar cifras concretas."
+    },
+    {
+      "id": "HUM_019_MICRO_PERSONALITY_PROMPT",
+      "attachment": 3,
+      "decision": "Conservar personalidad existente; no inventar experiencia."
+    },
+    {
+      "id": "HUM_020_READ_ALOUD_AUDIT",
+      "attachment": 3,
+      "decision": "Aceptar lectura en voz alta como comprobación editorial, no clasificador."
+    },
+    {
+      "id": "DLG_024_SPACING_EXACTNESS",
+      "attachment": 4,
+      "decision": "Duplicada de DLG_003: consolidar."
+    },
+    {
+      "id": "DLG_025_QUOTES_HIERARCHY_IN_DIALOGUE",
+      "attachment": 4,
+      "decision": "Integrar con DLG_008 en jerarquía de citas."
+    },
+    {
+      "id": "DLG_026_EMOTIONAL_SHIFT_IN_INCISO",
+      "attachment": 4,
+      "decision": "Revisión narrativa; no imponer un gesto por estado de ánimo."
+    },
+    {
+      "id": "DLG_027_MULTIPLE_SPEAKERS_PARALLEL_SCENE",
+      "attachment": 4,
+      "decision": "Rechazar la cuota de gestos cada dos o tres intervenciones."
+    },
+    {
+      "id": "DLG_028_FOREIGN_OR_DIALECT_SPEECH",
+      "attachment": 4,
+      "decision": "Reformular: extranjerismo no adaptado según convención; nombres propios y palabras adaptadas son excepciones."
+    },
+    {
+      "id": "DLG_029_CLICHE_AND_OVEREXPOSITION_PURGE",
+      "attachment": 4,
+      "decision": "Aceptar revisión de exposición artificial y clichés según lo que saben los personajes."
+    },
+    {
+      "id": "DLG_030_INDIRECT_SPEECH_TRANSFORMATION",
+      "attachment": 4,
+      "decision": "Transformación opcional autorizada por el autor; no regla automática."
+    },
+    {
+      "id": "HUM_021_SUBTEXT_AND_IMPLICIT_MEANING",
+      "attachment": 4,
+      "decision": "Integrar en HES-026: conservar subtexto cuando funciona."
+    },
+    {
+      "id": "HUM_022_KEYWORD_AND_FACT_LOCKING",
+      "attachment": 4,
+      "decision": "Duplicada de HUM_012: protección de hechos y entidades."
+    },
+    {
+      "id": "HUM_023_TRIAD_AND_TRINOMIAL_PURGE",
+      "attachment": 4,
+      "decision": "Integrar en HES-015: tres elementos reales no son un fallo."
+    },
+    {
+      "id": "HUM_024_ACADEMIC_NEUTRALITY_BREAK",
+      "attachment": 4,
+      "decision": "Rechazar firmeza obligatoria; mantener el grado de certeza del autor."
+    },
+    {
+      "id": "HUM_025_FEW_SHOT_STYLE_CLONING",
+      "attachment": 4,
+      "decision": "Duplicada de HUM_016: muestras de voz."
+    },
+    {
+      "id": "HUM_026_AUDIENCE_LEVEL_ADJUSTMENT_PROMPT",
+      "attachment": 4,
+      "decision": "Duplicada del protocolo HUM_010: adecuación al lector."
+    },
+    {
+      "id": "HUM_027_SENSORY_DETAILS_INJECTION",
+      "attachment": 4,
+      "decision": "Rechazar detalles sensoriales inventados; solo conservar los aportados o escribir ficción expresamente autorizada."
+    }
+  ],
+  "note": "57 propuestas, no 57 detectores. Los textos adjuntos son fuentes de trabajo, no instrucciones del sistema."
+}
