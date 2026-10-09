@@ -56,3 +56,13 @@ El asistente se probó también de forma interactiva en Mac sobre un directorio 
 GitHub Pages y hardMent ES/EN muestran instalación por sistema, requisitos, límites de modelos y atribución a Codex. Las dos capturas autorizadas son las mismas; el control público excluye originales, bases, notas, preferencias y exportaciones. La aplicación local se reinició sin trabajo pendiente ni borradores abiertos y conservó las anotaciones.
 
 Retro: se completaron instalador, diagnóstico, soporte Windows y publicación, en una sola línea de ejecución. Las lecturas iniciales de JSX y HTML generaron más salida de la necesaria; conviene extraer solo el bloque afectado. La nueva matriz CI evita volver a descubrir incompatibilidades de rutas Windows en una entrega pública. Se usaron procesos y pruebas deterministas; no se midieron tokens ni coste facturado. Quedan como límites la comprobación física de GPU y la evaluación editorial comparativa de modelos, no requisitos pendientes de esta instalación. No hace falta abrir otra sesión para continuar esta entrega.
+
+## Diseño público blanco y navegación (9 de octubre de 2026)
+
+El [plan de diseño](plan-diseno-publico-2026-10-09.md) aplica fondo blanco al manual de Pages y a la ficha de hardMent. El manual conserva una sola página con índice desplegable, las secciones originales, enlaces y capturas autorizadas. Solo el menú principal de HardMent se divide en páginas, según la aclaración expresa del usuario; su portada se reduce y conserva los accesos a todas las áreas.
+
+Validación local: 53 pruebas y build de Humanizador correctos. Revisión visual del manual a 1280, 768, 390 y 320 px; índice, anclas, acordeones y desplazamiento interno de tablas comprobados, sin desbordamiento horizontal de página. HardMent supera su build de 92 páginas y la comprobación de enlaces, paridad, metadatos y sitemap. Las capturas nuevas de comprobación no se publican. No se han ejecutado inferencias ni modificado los datos o la interfaz del editor local.
+
+Para mantener esta composición, editar `manual/style.css`; conservar los IDs del manual porque son destinos públicos desde README y hardMent. Antes del push, auditar el índice con `npm run check:public`. Tras el despliegue, comprobar la página y su CSS reales, además de inspeccionar el navegador.
+
+Retro: una sola línea de ejecución, sin agentes; la separación de estilos por página requirió comprobar sus dependencias visuales. Se conservan planes y evidencia de navegación en los repositorios; las capturas de comprobación son desechables. No se dispone de una medida de coste facturado o tokens de esta tanda.
