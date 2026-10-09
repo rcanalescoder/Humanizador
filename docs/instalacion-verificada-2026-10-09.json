@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-09",
+  "release": "0.6.0",
+  "code_commit": "087cea362c5bb972120220ae197efc17090d9374",
+  "ci": "https://github.com/rcanalescoder/Humanizador/actions/runs/37928853157",
+  "tests_per_platform": 53,
+  "platforms": [
+    "ubuntu-latest",
+    "macos-latest",
+    "windows-latest"
+  ],
+  "result": "tests, build, public audit and installer diagnostics passed",
+  "interactive_wizard": {
+    "platform": "macOS",
+    "mode": "rules only",
+    "settings_saved": true,
+    "start_declined": true,
+    "lock_removed": true
+  },
+  "inference_started_for_validation": false,
+  "models_downloaded_for_validation": false,
+  "limitations": [
+    "No physical Windows GPU validation",
+    "No comparative editorial evaluation of the lighter model"
+  ],
+  "public_urls": [
+    "https://rcanalescoder.github.io/Humanizador/",
+    "https://hardment.com/proyectos/humanizador.html",
+    "https://hardment.com/en/proyectos/humanizador.html"
+  ],
+  "private_documents_published": false
+}

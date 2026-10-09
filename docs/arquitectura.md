@@ -1,4 +1,4 @@
-# Arquitectura de Humanizador 0.5
+# Arquitectura de Humanizador 0.6
 
 La interfaz React se compila con Vite y usa PDF.js para representar el original, seleccionar texto y anclar las anotaciones. El servidor HTTP de Node recibe los PDF, guarda los datos en SQLite y sirve la interfaz compilada. Un worker separado extrae el texto y ejecuta las tareas; cerrar el navegador no cancela el procesamiento.
 
@@ -22,6 +22,10 @@ El PDF original es inmutable. Cada anotación guarda texto o región, página, c
 El worker procesa una tarea cada vez. El catálogo determinista funciona sin modelo. Ollama añade propuestas y comprobaciones editoriales y de fidelidad, con validación de citas, esquemas y anclajes. Las respuestas completas se guardan por fragmento; su reutilización exige compatibilidad de texto, contexto, modelo, prompt y parámetros. Un fallo no se presenta como análisis completo.
 
 El supervisor y los scripts de ciclo de vida identifican sus procesos antes de detenerlos. La parada pausa los trabajos e invalida sus concesiones, conserva el progreso válido y permite elegir la continuación desde la interfaz. Véase [operación](operacion.md).
+
+## Instalación y diagnóstico
+
+`instalar.sh` e `instalar.ps1` comprueban Node y llaman al asistente común `tools/install.mjs`. Las preferencias se guardan de forma atómica en `data/settings.json`; las variables de entorno tienen prioridad. El diagnóstico consulta el catálogo y los metadatos locales de Ollama, sin inferencia. La ayuda integrada comparte las instrucciones por sistema entre el espacio de revisión y Configuración.
 
 ## Despliegue y datos
 

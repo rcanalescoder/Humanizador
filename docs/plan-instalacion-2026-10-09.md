@@ -17,8 +17,8 @@ Fuentes oficiales consultadas el 9 de octubre de 2026: [Ollama macOS](https://do
 - [x] Identificadas la falta de diagnóstico concreto y la dependencia de `ps` en el ciclo de vida.
 - [x] Ayuda y diagnóstico: servicio, modelo, instrucciones por sistema y enlace al manual.
 - [x] Instalador y configuración persistente: elección explícita, descargas consentidas y prueba interactiva sin Ollama.
-- [ ] Arranque/parada y pruebas Windows.
-- [ ] Documentación, Codex y publicación verificada.
+- [x] Arranque/parada y pruebas Windows: 53 pruebas y build correctos en los tres sistemas (CI 37928853157).
+- [x] Documentación, Codex y publicación verificada en GitHub Pages y hardMent ES/EN; comprobación visual de la ayuda integrada y de los enlaces del manual.
 
 ## Incidencia de compatibilidad encontrada en CI
 
