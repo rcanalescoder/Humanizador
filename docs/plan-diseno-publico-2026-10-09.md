@@ -18,3 +18,5 @@ Manual blanco, con entrada centrada en escritorio, índice desplegable y ancho d
 Se ha inspeccionado en navegador a 1280, 768, 390 y 320 px, sin desbordamiento horizontal observado. El índice lleva a `#problemas`, el acordeón de ayuda se abre y los títulos quedan bajo la cabecera. `npm run check`: 53 pruebas y build correctos. La auditoría pública se ejecuta sobre el índice antes de publicar.
 
 En HardMent se crean cinco páginas por idioma, se acorta la portada, se unifica la cabecera y se conserva el texto de las doce secciones trasladadas. La evidencia de ese sitio queda en su repositorio, `docs/revision-visual-humanizador-2026-10-09.md`. Ambos sitios deben comprobarse en producción tras el push.
+
+Cierre: ambos sitios publicados y comprobados; evidencia de despliegue y CI registrada en `docs/operacion.md`.
