@@ -24,4 +24,19 @@ No se publica el historial editorial del proyecto usado en las capturas. Sus ori
 
 ## Cierre de la entrega del 9 de octubre de 2026
 
-En preparación: código sin historial privado, README, manual y sección Proyectos. El estado final, commits, verificación pública y límites se registrarán al terminar la publicación.
+Publicados el repositorio público, el manual de Pages y las cuatro páginas ES/EN de Proyectos en hardMent. El primer commit del código es `e5aa389`; hardMent se publicó en `78642a17f282f8ef3fd10467decbe1e519c8070a`. Se comprobaron 10 recursos públicos y el enlace Proyectos en las dos portadas. Ocho recursos coinciden byte a byte. Hostinger recodifica las dos capturas y reduce la grande de 2782 a 1600 píxeles de ancho; ambas se contrastaron visualmente en el navegador. GitHub Pages conserva sus bytes originales. [Evidencia de publicación](publicacion-verificada-2026-10-09.json).
+
+Validación: 47 pruebas correctas, build de Humanizador, auditoría de 102 archivos en el índice inicial, dos capturas autorizadas y rechazo de una exportación sintética añadida deliberadamente al índice. El workflow pasó en GitHub Actions sobre Node 24. HardMent pasó build, paridad y descubrimiento de sus 82 páginas. El manual y la ficha se inspeccionaron a 1280 y 390 píxeles; no se observó desbordamiento horizontal.
+
+Los documentos privados y sus revisiones permanecen locales. La entrega no ejecutó inferencia real ni aporta una nueva medida de precisión editorial. El aviso de tamaño del paquete del visor sigue siendo una advertencia de build, no un error.
+
+### Retro breve
+
+- Trabajo: publicación del código, guía ilustrada, sección Proyectos y enlaces cruzados verificados.
+- Ejecución: una sola línea, sin agentes auxiliares ni nuevas llamadas a modelos locales o APIs de pago.
+- Se conservaron los datos del usuario y se apartó el historial privado antes de inicializar Git.
+- Sobró salida de las primeras búsquedas amplias; después se usaron rutas, hashes y resúmenes.
+- Automatizado: auditoría del índice y capturas, publicación limitada a `manual/` y contrato de imágenes en hardMent.
+- Aprendizaje: comprobar los bytes servidos y documentar las optimizaciones de imágenes del alojamiento sin atribuirles igualdad binaria.
+- Pendiente de producto: OCR, validación nativa en Windows y evaluación editorial representativa; no impiden usar la revisión actual.
+- No hay una medida fiable de tokens o coste facturado por esta tanda; no se atribuyen ahorros monetarios.

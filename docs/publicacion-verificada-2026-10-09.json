@@ -1,0 +1,111 @@
+{
+  "verified_at": "2026-10-09T11:46:30.924511+00:00",
+  "humanizador_code_commit": "e5aa389",
+  "hardment_commit": "78642a17f282f8ef3fd10467decbe1e519c8070a",
+  "github_visibility": "PUBLIC",
+  "github_actions": "https://github.com/rcanalescoder/Humanizador/actions/runs/37924888566",
+  "checks": {
+    "humanizador_tests": 47,
+    "humanizador_failed": 0,
+    "public_index_initial_files": 102,
+    "authorized_screenshots": 2,
+    "private_export_guard": "synthetic staged export rejected",
+    "hardment_pages": 82,
+    "hardment_indexable_pages": 80,
+    "desktop_width": 1280,
+    "mobile_width": 390,
+    "horizontal_overflow": false,
+    "markdown_local_links": "passed",
+    "private_pdf_database_exports_in_git": false
+  },
+  "resources": [
+    {
+      "url": "https://rcanalescoder.github.io/Humanizador/",
+      "status": 200,
+      "sha256": "3e80f463c9aa6cc5ff2a69e819c68ca3f576cf31d2086ef7c86ed254444bdac0",
+      "matches_local_bytes": true
+    },
+    {
+      "url": "https://rcanalescoder.github.io/Humanizador/style.css",
+      "status": 200,
+      "sha256": "920b693a4cefb9f15fcf644374d494a07d05da9f9a727ab44a32d2992a7dd75d",
+      "matches_local_bytes": true
+    },
+    {
+      "url": "https://hardment.com/proyectos.html",
+      "status": 200,
+      "sha256": "36319569ec60443acd86d2fc121eaeec57eeb3b9704e91072e3cb0a611517a21",
+      "matches_local_bytes": true
+    },
+    {
+      "url": "https://hardment.com/proyectos/humanizador.html",
+      "status": 200,
+      "sha256": "6b292c4e4f304be466e40d0e846e4e1a1ca531aa7089244832fe8f29fbe496a4",
+      "matches_local_bytes": true
+    },
+    {
+      "url": "https://hardment.com/en/proyectos.html",
+      "status": 200,
+      "sha256": "9822b67ce378772425a36b7f9246f39b9235ff2ca1d2889254a3c8b9c6696f68",
+      "matches_local_bytes": true
+    },
+    {
+      "url": "https://hardment.com/en/proyectos/humanizador.html",
+      "status": 200,
+      "sha256": "87ec85ea1044e5fec44182095de66672b2e33bf82cb6d79bec5de8e31c713f71",
+      "matches_local_bytes": true
+    },
+    {
+      "url": "https://rcanalescoder.github.io/Humanizador/assets/navegacion-pdf.jpg",
+      "status": 200,
+      "sha256": "97193b870740a85477667c4775b528908125440a080e8573ab7932f4758b79f5",
+      "matches_local_bytes": true
+    },
+    {
+      "url": "https://hardment.com/proyectos/humanizador/navegacion-pdf.jpg",
+      "status": 200,
+      "sha256": "e7c2691a43a7ea3ce7e3df3d98ac173a08fc4e909d6c7c806f0fedeef897e16f",
+      "matches_local_bytes": false,
+      "image": {
+        "local_size": [
+          624,
+          285
+        ],
+        "served_size": [
+          624,
+          285
+        ],
+        "visually_checked": true
+      }
+    },
+    {
+      "url": "https://rcanalescoder.github.io/Humanizador/assets/revision-pdf.png",
+      "status": 200,
+      "sha256": "cafafbfaf4fb25bf8c80b3e8c4cd40da821efc26f6d03dbd2809fd6263370bc7",
+      "matches_local_bytes": true
+    },
+    {
+      "url": "https://hardment.com/proyectos/humanizador/revision-pdf.png",
+      "status": 200,
+      "sha256": "599969b92d0db886bd7b6294e75d3a22d5a7068850d332be49527af8d60867ad",
+      "matches_local_bytes": false,
+      "image": {
+        "local_size": [
+          2782,
+          2230
+        ],
+        "served_size": [
+          1600,
+          1283
+        ],
+        "visually_checked": true
+      }
+    }
+  ],
+  "limits": [
+    "Sin inferencia real ni medición nueva de calidad editorial en esta publicación.",
+    "El libro completo y el registro de notas quedan fuera del repositorio.",
+    "Windows nativo y el despliegue remoto de la aplicación Node no se han validado.",
+    "Hostinger recodifica las imágenes y reduce la captura grande a 1600 píxeles; su contenido se contrastó visualmente. GitHub Pages conserva los bytes originales."
+  ]
+}

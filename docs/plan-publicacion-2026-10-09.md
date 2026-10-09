@@ -25,8 +25,10 @@ La herramienta ayuda a revisar textos nacidos de clases, locuciones y borradores
 
 - [x] Repositorio remoto existente, privado y vacío; no hay historial Git local que limpiar.
 - [x] Aislada la edición de hardMent desde su rama remota actual.
-- [ ] Separación y auditoría de contenidos.
-- [ ] README, manual, licencia y capturas.
-- [ ] GitHub público y Pages verificados.
-- [ ] hardMent publicado y enlaces comprobados.
-- [ ] Cierre de operación y retro.
+- [x] Separación y auditoría de contenidos.
+- [x] README, manual, licencia y capturas.
+- [x] GitHub público y Pages verificados.
+- [x] hardMent publicado y enlaces comprobados.
+- [x] Cierre de operación y retro.
+
+Cierre: publicación realizada y comprobada en los tres destinos. Evidencia: [publicacion-verificada-2026-10-09.json](publicacion-verificada-2026-10-09.json). Código y documentación propia con MIT; los fragmentos de las capturas conservan los derechos del autor.
