@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PdfViewer from './PdfViewer.jsx';
 import AnalysisStatus from './AnalysisStatus.jsx';
 import Suggestions from './Suggestions.jsx';
+import OllamaSetup from './OllamaSetup.jsx';
 
 export default function PdfEdition({ document, page, setPage, onCreate, onUpdate, onDelete, onExport, busy, localModel, onRefreshModel, onAnalyze, onRetry, onCancel, onDiagnostics, onDecision }) {
   const [draft,setDraft]=useState(null),[selectedId,setSelectedId]=useState(null),[filter,setFilter]=useState('all'),[search,setSearch]=useState('');
@@ -22,6 +23,7 @@ export default function PdfEdition({ document, page, setPage, onCreate, onUpdate
       <div className="review-start"><button disabled={busy||working} onClick={()=>analyze('rules')}>Revisar con reglas</button><button disabled={busy||working||!localModel?.ready} title={localModel?.message} onClick={()=>analyze('local')}>Revisar con Ollama</button><button className="text-button" title={localModel?.message} aria-label="Comprobar disponibilidad de Ollama" onClick={onRefreshModel} disabled={busy}>↻</button></div>
       <button className="primary" disabled={busy} onClick={onExport}>Exportar revisión para IA</button>
     </div>
+    <OllamaSetup status={localModel} onRefresh={onRefreshModel} busy={busy}/>
     {confirmAnalysis&&<section className="review-confirm" role="alert"><p>La revisión actual y sus decisiones se guardarán en el historial incluido en la exportación. {confirmAnalysis==='local'?'Ollama recorrerá el documento en este ordenador; puede tardar bastante.':'Se aplicarán las reglas actuales del catálogo.'}</p><button className="primary" disabled={busy} onClick={()=>{onAnalyze(confirmAnalysis);setConfirmAnalysis(null);}}>Iniciar nueva revisión</button><button onClick={()=>setConfirmAnalysis(null)}>Conservar revisión actual</button></section>}
     {paused&&!deferred&&<section className="recovery-banner" role="status"><strong>La revisión quedó en pausa. ¿Quieres continuar?</strong><p>Se recuperarán los bloques completos compatibles ({x.stored_chunks??0} guardados). Tus notas se conservan.</p><button className="primary" disabled={busy} onClick={onRetry}>Continuar revisión</button><button onClick={()=>setDeferred(true)}>Dejar pendiente</button></section>}
     {paused&&deferred&&<p className="startup-notice">Revisión en pausa. <button disabled={busy} onClick={onRetry}>Continuar cuando quieras</button></p>}

@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import { setTimeout as delay } from 'node:timers/promises';
 import { pauseJobs } from './pause.mjs';
@@ -11,7 +12,7 @@ console.log('Worker de Humanizador preparado (una tarea cada vez).');
 while (!stopping) {
   const job = claimJob(db);
   if (!job) { await delay(500); continue; }
-  child = spawn(process.execPath, ['--max-old-space-size=512', new URL('./job.mjs', import.meta.url).pathname, job.id, job.token, ...(process.env.HUMANIZADOR_INSTANCE?[`--instance=${process.env.HUMANIZADOR_INSTANCE}`]:[])], { stdio: 'inherit' });
+  child = spawn(process.execPath, ['--max-old-space-size=512', fileURLToPath(new URL('./job.mjs', import.meta.url)), job.id, job.token, ...(process.env.HUMANIZADOR_INSTANCE?[`--instance=${process.env.HUMANIZADOR_INSTANCE}`]:[])], { stdio: 'inherit' });
   const active = child;
   const localReview = JSON.parse(db.prepare('SELECT profile FROM documents WHERE id=?').get(job.id).profile).review_mode === 'local';
   const heartbeat = setInterval(() => {

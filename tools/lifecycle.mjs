@@ -1,4 +1,5 @@
-import { spawn, execFileSync } from 'node:child_process';
+import { instanceMembers } from './processes.mjs';
+import { spawn } from 'node:child_process';
 import { mkdir, readFile, writeFile, rm, open } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { resolve, dirname } from 'node:path';
@@ -12,25 +13,14 @@ const runtime = resolve(data,'runtime'), statePath=resolve(runtime,'instance.jso
 const runner=resolve(root,'tools/run.mjs');
 const alive = pid => { try { process.kill(pid,0); return true; } catch { return false; } };
 async function readState(){try{return JSON.parse(await readFile(statePath,'utf8'));}catch{return null;}}
-function owned(s){
-  if(!s || s.root!==root || !Number.isInteger(s.pid) || !s.token || !alive(s.pid)) return false;
-  const command=execFileSync('ps',['-p',String(s.pid),'-o','command='],{encoding:'utf8'}).trim();
-  return command.includes(runner) && command.split(/\s+/).includes(`--instance=${s.token}`);
-}
+function owned(s){return Boolean(s && alive(s.pid) && members(s).includes(s.pid));}
 function browser(url){
   console.log(url);
   if(process.env.HUMANIZADOR_NO_BROWSER==='1')return;
   const command=process.platform==='darwin'?'open':process.platform==='win32'?'explorer.exe':'xdg-open';
   const child=spawn(command,[url],{stdio:'ignore',detached:true});child.on('error',()=>console.error('Abre en tu navegador la dirección anterior.'));child.unref();
 }
-function members(s){
-  if(!s||s.root!==root||!s.token)return [];
-  return execFileSync('ps',['-ax','-o','pid=,command='],{encoding:'utf8'}).split('\n').flatMap(line=>{
-    const match=/^\s*(\d+)\s+(.+)$/.exec(line);if(!match)return [];
-    const args=match[2].split(/\s+/);
-    return args.includes(`--instance=${s.token}`)&&[runner,resolve(root,'server/api.mjs'),resolve(root,'server/worker.mjs'),resolve(root,'server/job.mjs')].some(p=>match[2].includes(p))?[Number(match[1])]:[];
-  });
-}
+function members(s){return instanceMembers(s,root);}
 async function stop(){
   const s=await readState();
   if(!s){console.log('Humanizador ya está parado.');return;}
@@ -38,8 +28,21 @@ async function stop(){
   if(!parent && alive(s.pid))throw new Error('El PID registrado ya no corresponde a Humanizador. No se ha detenido ningún proceso ajeno.');
   // A supervisor killed abruptly may have left children behind. Each signal is
   // restricted to a process carrying this instance token and a known script.
-  for(const pid of parent?[s.pid]:remaining){try{process.kill(pid,'SIGTERM');}catch(e){if(e.code!=='ESRCH')throw e;}}
-  for(let i=0;i<120&&members(s).length;i++)await delay(100);
+  if(process.platform==='win32' && remaining.length){
+    // Windows terminates processes without delivering POSIX signal handlers.
+    // Fence every DB claim first; only terminate processes scoped to this token.
+    const {openDatabase}=await import('../server/db.mjs');
+    const {pauseJobs}=await import('../server/pause.mjs');
+    const db=openDatabase(resolve(data,'humanizador.sqlite'));
+    try {pauseJobs(db);} finally {db.close();}
+    for(const pid of remaining.filter(pid=>pid!==s.pid)) {try{process.kill(pid);}catch(e){if(e.code!=='ESRCH')throw e;}}
+    for(const pid of members(s)) {try{process.kill(pid);}catch(e){if(e.code!=='ESRCH')throw e;}}
+    const finalDb=openDatabase(resolve(data,'humanizador.sqlite'));
+    try {pauseJobs(finalDb);} finally {finalDb.close();}
+  }
+  for(const pid of (process.platform==='win32'?[]:parent?[s.pid]:remaining)){try{process.kill(pid,'SIGTERM');}catch(e){if(e.code!=='ESRCH')throw e;}}
+  const deadline=Date.now()+15000;
+  while(Date.now()<deadline && members(s).length)await delay(process.platform==='win32'?500:100);
   if(members(s).length)throw new Error('La instancia no ha confirmado la parada segura. Revisa el registro antes de volver a arrancar.');
   await rm(statePath,{force:true});console.log('Humanizador parado. Las revisiones en curso quedan pendientes de tu decisión.');
 }

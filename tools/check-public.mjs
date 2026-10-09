@@ -10,7 +10,7 @@ const read = file => execFileSync('git', ['show', `:${file}`], {maxBuffer:8*1024
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const shots = JSON.parse(read('docs/capturas-publicas.json')).assets;
 const allowedImages = new Map(shots.map(a=>[a.path,a]));
-const allowedRoot = new Set(['.gitignore','.dockerignore','AGENTS.md','LICENSE','README.md','Dockerfile','arrancar.sh','parar.sh','package.json','package-lock.json','index.html','vite.config.js']);
+const allowedRoot = new Set(['.gitignore','.dockerignore','AGENTS.md','LICENSE','README.md','Dockerfile','arrancar.sh','parar.sh','instalar.sh','instalar.ps1','arrancar.ps1','parar.ps1','package.json','package-lock.json','index.html','vite.config.js']);
 const allowedDirectories = new Set(['src','core','server','rules','tools','test','evaluation','deploy','docs','manual','.github']);
 let totalBytes=0;
 for(const file of files){

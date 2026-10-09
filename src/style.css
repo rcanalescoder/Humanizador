@@ -46,3 +46,10 @@
 .pdf-navigation.page-controls button{width:34px;height:34px;padding:0;font-size:24px;border-radius:8px}
 .pdf-navigation.page-controls input{width:58px;height:34px;padding:5px 4px;text-align:center;font-size:14px}
 @media(max-width:700px){.pdf-navigation{bottom:9px;gap:7px;padding:6px 8px}.pdf-navigation.page-controls input{font-size:16px}}
+
+.ollama-setup{border:1px solid #dce2ef;border-radius:10px;background:#fff;margin:10px 0 16px;font-size:13px}
+.ollama-setup summary{padding:10px 14px;cursor:pointer;color:#506078}
+.ollama-ready{color:#17745b;font-weight:600}.ollama-unavailable{color:#6b5215;font-weight:600}
+.ollama-help{padding:0 16px 14px;max-width:1000px;line-height:1.6}.ollama-help p{margin:10px 0}.ollama-help ol{padding-left:22px}.ollama-help li{margin:8px 0}
+.ollama-help code{background:#f1f3f9;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere;white-space:normal}.ollama-help a{color:#304dcc;text-decoration:underline}
+.ollama-help label{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.ollama-help select{width:auto;padding:7px}.ollama-actions{display:flex;gap:18px;align-items:center;flex-wrap:wrap}

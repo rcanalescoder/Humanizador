@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import { openDatabase } from '../server/db.mjs';
 import { pauseJobs } from '../server/pause.mjs';
@@ -18,7 +19,7 @@ function stop(code = 0) {
 }
 for (const signal of ['SIGTERM', 'SIGINT']) process.on(signal, () => stop());
 for (const command of [['server/api.mjs'], ['server/worker.mjs'], ...(dev ? [['node_modules/vite/bin/vite.js']] : [])]) {
-  const args=[new URL('../'+command[0],import.meta.url).pathname,...command.slice(1),...(process.env.HUMANIZADOR_INSTANCE?[`--instance=${process.env.HUMANIZADOR_INSTANCE}`]:[])];
+  const args=[fileURLToPath(new URL('../'+command[0],import.meta.url)),...command.slice(1),...(process.env.HUMANIZADOR_INSTANCE?[`--instance=${process.env.HUMANIZADOR_INSTANCE}`]:[])];
   const child = spawn(process.execPath, args, { stdio: 'inherit', env });
   children.add(child);
   child.on('error', e => { console.error('No se pudo iniciar un servicio:', e.message); stop(1); });

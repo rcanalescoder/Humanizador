@@ -28,7 +28,7 @@ El PDF original permanece intacto. Aprobar una propuesta guarda una decisión; *
 
 ## Reglas y límites
 
-| Parte del catálogo | Estado en la versión 0.5 |
+| Parte del catálogo | Estado en la versión 0.6 |
 | --- | --- |
 | 30 comprobaciones deterministas | Buscan patrones y expresiones sin un modelo |
 | 12 criterios editoriales | Revisión contextual opcional con Ollama |
@@ -42,40 +42,64 @@ Puede haber falsas alarmas y omisiones. Tener más hallazgos no demuestra mayor 
 
 React 19 y Vite 8 para la interfaz; PDF.js 6 para representar y extraer el PDF; Node.js con HTTP nativo, SQLite y un proceso de trabajo independiente para guardar y procesar las revisiones. Las versiones exactas están fijadas en `package-lock.json`.
 
-Necesitas **Node.js 24 o posterior**, npm, Git, macOS o Linux con `sh` y `ps`, y un navegador actual. Los scripts de arranque están orientados a esos sistemas; Windows nativo no se ha validado. La instalación descarga dependencias. La revisión por reglas no necesita Ollama ni una cuenta de IA. Ollama es opcional, necesita un modelo instalado y memoria suficiente para ese modelo; no se descarga al instalar Humanizador.
+Necesitas **Node.js 24 o posterior con npm**, un navegador actual y macOS, Windows o Linux. Git es opcional: también puedes descargar el ZIP del repositorio y descomprimirlo. Los modelos locales necesitan disco y memoria adicionales; las reglas no necesitan Ollama ni una cuenta de IA.
+
+**Humanizador está construido con Codex, bajo la dirección de Roberto Canales Mora.** Se comprueba con pruebas automatizadas y revisión humana. Esto no garantiza que todas las recomendaciones sean correctas. Codex es una herramienta de desarrollo: no necesitas instalarlo ni tener una cuenta para usar Humanizador.
 
 ## Instalación y arranque
+
+Descarga el [ZIP del código](https://github.com/rcanalescoder/Humanizador/archive/refs/heads/main.zip) o clona el repositorio. Abre una terminal **en la carpeta descomprimida**. No ejecutes el instalador dentro del ZIP.
+
+### Mac y Linux
 
 ```sh
 git clone https://github.com/rcanalescoder/Humanizador.git
 cd Humanizador
-npm ci
-./arrancar.sh
+./instalar.sh
 ```
 
-Se compila la interfaz y se abre el navegador en `http://127.0.0.1:8787/`. Si ese puerto está ocupado, se busca otro y se indica en la web. Ante un fallo de arranque se abre una página local con el diagnóstico. Ejecutar `arrancar.sh` de nuevo detiene su instancia anterior y la reinicia de forma segura.
+Si descargaste el ZIP, empieza directamente con `sh instalar.sh`. El asistente comprueba Node, ofrece abrir su instalador oficial si falta, instala las dependencias, compila la aplicación y pregunta cómo quieres revisar. Muestra el progreso con colores cuando la terminal lo permite (`NO_COLOR=1` los desactiva).
 
-```sh
-./parar.sh
+### Windows
+
+Con PowerShell, en la carpeta descomprimida:
+
+```powershell
+.\instalar.ps1
 ```
 
-Los documentos y decisiones quedan en `data/`, fuera de Git. Si hay una revisión en curso, el trabajo queda en pausa. Al volver puedes continuar desde los fragmentos válidos guardados, cuando la configuración sea compatible, o dejarlo pendiente. Cerrar la pestaña no detiene el servidor.
+Si Windows bloquea los scripts descargados, revisa el archivo y ejecuta `powershell -NoProfile -ExecutionPolicy Bypass -File .\instalar.ps1`. Esta excepción afecta a ese proceso, no modifica la política global del equipo. Si es un ordenador administrado, respeta su política; el [manual de instalación](https://rcanalescoder.github.io/Humanizador/#empezar) incluye la alternativa con Node ya instalado.
+
+El asistente explica cómo instalar Node si falta. Tras completar el instalador oficial, comprueba de nuevo. No instala servicios del sistema ni cambia el cortafuegos. Puedes elegir **solo reglas**, conservar tu configuración o preparar Ollama. Descargar un modelo requiere una confirmación aparte; no se descargan modelos por defecto.
+
+### Uso diario y diagnóstico
+
+| Acción | Mac / Linux | Windows PowerShell |
+| --- | --- | --- |
+| Instalar o repetir la preparación | `./instalar.sh` | `.\instalar.ps1` |
+| Cambiar la elección de Ollama sin reinstalar dependencias | `./instalar.sh --configure` | `.\instalar.ps1 -Configure` |
+| Comprobar el entorno sin cambios | `./instalar.sh --check` | `.\instalar.ps1 -Check` |
+| Arrancar y abrir el navegador | `./arrancar.sh` | `.\arrancar.ps1` |
+| Parar de forma segura | `./parar.sh` | `.\parar.ps1` |
+
+La aplicación suele abrirse en `http://127.0.0.1:8787/`. Si el puerto está ocupado busca otro y lo explica. Si falla, abre un diagnóstico local. Repetir el arranque detiene su instancia identificada y la reinicia. No mezcles distintos supervisores sobre la misma base de datos.
+
+Los documentos y decisiones permanecen en `data/`, fuera de Git. La parada pausa las revisiones; al volver puedes continuar desde los fragmentos válidos compatibles o dejarlas pendientes. Cerrar la pestaña no detiene el servidor. El instalador conserva los datos y guarda tu elección en `data/settings.json`; las variables de entorno tienen prioridad.
 
 ### Ollama opcional
 
-Instala [Ollama](https://ollama.com/download) y descarga un modelo local compatible. La etiqueta configurada por defecto es `qwen3.6:27b-q8_0`; es un modelo grande, no un requisito para usar las reglas. Para elegir otra etiqueta instalada:
+Instala [Ollama desde su web oficial](https://ollama.com/download), ábrelo y repite el asistente con la opción de configuración. En **Mac** requiere macOS 14 o posterior: Apple Silicon puede usar GPU; Intel usa CPU. En **Windows** requiere Windows 10 22H2 o posterior; la aceleración depende del hardware y los controladores. Consulta la [guía con las particularidades de cada sistema](docs/ollama.md).
 
-```sh
-HUMANIZADOR_OLLAMA_MODEL='etiqueta-local-instalada' ./arrancar.sh
-```
+El asistente permite elegir un modelo ya instalado o descargar uno. Ofrece `qwen3.5:4b` como opción de menor tamaño (varios GB), **sin afirmar que tenga la misma calidad editorial** que un modelo mayor. La configuración histórica del código, `qwen3.6:27b-q8_0`, ronda los 30 GB de descarga y necesita muchos más recursos. El tamaño del archivo no equivale a la memoria necesaria: también cuenta el contexto. No hay un modelo universal recomendado ni una comparación editorial suficiente.
 
-Comprueba su disponibilidad en la aplicación y pulsa **Revisar con Ollama** cuando quieras empezar. No se usan APIs de pago. Consulta [configuración, recursos y límites](docs/ollama.md).
+La aplicación muestra si Ollama no responde, está desactivado, falta el modelo o está preparado, y ofrece ayuda de instalación. Solo consulta el catálogo al comprobarlo; la inferencia empieza al pedir **Revisar con Ollama** o continuar un análisis. No se usan APIs de pago. [Configuración, actividad y resolución de problemas](docs/ollama.md).
 
 ## Comandos
 
 | Comando | Función |
 | --- | --- |
-| `./arrancar.sh` / `./parar.sh` | Arranque con navegador y parada segura de su instancia |
+| `node tools/install.mjs --check` | Diagnóstico sin instalaciones, descargas ni inferencia |
+| `node tools/lifecycle.mjs start` / `stop` | Alternativa común a los scripts de arranque y parada |
 | `npm run dev` | Desarrollo; interfaz en el puerto 5187 y API en 8787 |
 | `npm start` | Servidor y worker en primer plano; para supervisión de servidor |
 | `npm run build` | Compilar la interfaz en `dist/` |
@@ -97,7 +121,7 @@ core/        Reglas, anclajes, exportación y controles de cambios
 rules/es-ES/ Catálogo, patrones y fuentes
 evaluation/  Casos sintéticos compartibles
 test/        Pruebas automatizadas
-tools/       Arranque, copias, aplicación y evaluación
+tools/       Instalación, arranque, copias, aplicación y evaluación
 deploy/      Docker Compose y ejemplo de proxy
 docs/        Arquitectura, investigación y contratos
 manual/      Guía estática y capturas autorizadas para GitHub Pages

@@ -1,16 +1,17 @@
+import { defaultModel, readSettings, validModel } from './local-settings.mjs';
+export { defaultModel } from './local-settings.mjs';
 import {editorialPrinciples, editorialInstructions, replacementSafeguards} from '../core/editorial-principles.mjs';
 import { hash, canonical } from '../core/changes.mjs';
 import { semanticRules } from '../core/rules.mjs';
 import { searchView } from '../core/patterns.mjs';
 
-export const defaultModel = 'qwen3.6:27b-q8_0';
 export const promptVersion = 'es-ES-editor-10';
-export function localConfig() {
-  const enabled = process.env.HUMANIZADOR_OLLAMA_ENABLED === '1' || (process.env.NODE_ENV !== 'production' && process.env.HUMANIZADOR_OLLAMA_ENABLED !== '0');
+export function localConfig(saved = readSettings()) {
+  const enabled = process.env.HUMANIZADOR_OLLAMA_ENABLED !== undefined ? process.env.HUMANIZADOR_OLLAMA_ENABLED === '1' : (saved.ollama_enabled ?? process.env.NODE_ENV !== 'production');
   const url = new URL(process.env.HUMANIZADOR_OLLAMA_URL || 'http://127.0.0.1:11434');
   if (url.protocol !== 'http:' || !['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname) || url.username || url.password || url.search || url.hash || url.pathname !== '/') throw new Error('Ollama requiere una dirección HTTP local, sin credenciales ni ruta.');
-  const model = process.env.HUMANIZADOR_OLLAMA_MODEL || defaultModel;
-  if (!/^[a-zA-Z0-9_.:/-]+$/.test(model) || /cloud/i.test(model)) throw new Error('Selecciona un modelo local de Ollama.');
+  const model = process.env.HUMANIZADOR_OLLAMA_MODEL || saved.ollama_model || defaultModel;
+  if (!validModel(model)) throw new Error('Selecciona un modelo local de Ollama.');
   return { enabled, url: url.origin, model };
 }
 async function request(config, path, data, signal = AbortSignal.timeout(5000)) {
@@ -19,15 +20,21 @@ async function request(config, path, data, signal = AbortSignal.timeout(5000)) {
   return response.json();
 }
 export async function modelStatus(config = localConfig()) {
-  if (!config.enabled) return { enabled: false, ready: false, model: config.model, message: 'Revisión local desactivada en este servidor.' };
-  try {
-    const tags = await request(config, '/api/tags');
-    const model = tags.models?.find(m => m.name === config.model || m.model === config.model);
-    if (!model) return { enabled: true, ready: false, model: config.model, message: 'El modelo todavía no está instalado en Ollama.' };
-    const detail = await request(config, '/api/show', { model: config.model });
-    if (detail.remote_host || detail.remote_model) throw new Error('Modelo remoto rechazado.');
-    return { enabled: true, ready: true, model: config.model, digest: model.digest, size_bytes: model.size, message: 'Preparado para revisar en este ordenador.' };
-  } catch { return { enabled: true, ready: false, model: config.model, message: 'Ollama no está disponible o el modelo no es local.' }; }
+  const base = { enabled: config.enabled, ready: false, model: config.model, host_platform: process.platform,
+    help_url: 'https://rcanalescoder.github.io/Humanizador/#ollama' };
+  if (!config.enabled) return { ...base, status: 'disabled', message: 'Ollama está desactivado en Humanizador. Puedes usar las reglas o activarlo con el instalador.' };
+  let tags;
+  try { tags = await request(config, '/api/tags'); }
+  catch { return { ...base, status: 'unreachable', message: 'No podemos conectar con Ollama. Puede que no esté instalado o que esté cerrado. Abre Ollama y vuelve a comprobar.' }; }
+  if (!Array.isArray(tags.models)) return { ...base, status:'invalid_response', message:'El servicio local no devuelve el catálogo esperado de Ollama. Comprueba la instalación y el puerto.' };
+  const installed_models = tags.models.map(m=>m.name || m.model).filter(validModel);
+  const model = tags.models.find(m => m.name === config.model || m.model === config.model);
+  if (!model) return { ...base, installed_models, status:'missing_model', message: `Ollama responde, pero falta el modelo ${config.model}. Descárgalo o elige uno instalado con el instalador.` };
+  let detail;
+  try { detail = await request(config, '/api/show', { model: config.model }); }
+  catch { return { ...base, installed_models, status:'model_error', message:'Ollama responde, pero no puede consultar ese modelo. Revisa su descarga y actualiza Ollama si es necesario.' }; }
+  if (detail.remote_host || detail.remote_model) return { ...base, installed_models, status:'remote_model', message:'Ese modelo utiliza un servicio remoto. Humanizador requiere un modelo local.' };
+  return { ...base, ready:true, installed_models, status:'ready', digest:model.digest, size_bytes:model.size, message:'Ollama y el modelo local están disponibles. La inferencia comienza solo al pedir una revisión.' };
 }
 
 const criteria = semanticRules.map(r => `${r.id}: ${r.proposal.guidance}`).join('\n');

@@ -2,11 +2,11 @@
 
 ## Uso local
 
-Node.js 24 o posterior, `npm ci` y `./arrancar.sh`. El script compila y abre la aplicación; busca un puerto alternativo si 8787 está ocupado. Al ejecutarlo de nuevo, para únicamente su instancia identificada y la reinicia. Los fallos abren un diagnóstico local. `./parar.sh` pausa los trabajos, conserva el progreso válido y detiene sus procesos de forma segura. Al volver se elige continuar o dejar pendiente.
+Usa `instalar.sh` (Mac/Linux) o `instalar.ps1` (Windows): comprueba Node.js 24+, instala dependencias, compila y guarda la elección de Ollama. Para el uso diario, `arrancar.sh` / `parar.sh` o `arrancar.ps1` / `parar.ps1`. El script compila y abre la aplicación; busca un puerto alternativo si 8787 está ocupado. Al ejecutarlo de nuevo, para únicamente su instancia identificada y la reinicia. Los fallos abren un diagnóstico local. La parada pausa los trabajos, conserva el progreso válido y detiene sus procesos de forma segura. Al volver se elige continuar o dejar pendiente.
 
 `data/humanizador.sqlite` contiene los originales y las revisiones. `data/runtime/` contiene el estado del supervisor y los logs. No borres estos datos para actualizar código. `npm run backup -- /ruta/privada/copia.sqlite` crea una copia consistente y rechaza sobrescribir otra. Para restaurar, para la aplicación, conserva una copia del estado actual y reemplaza la base con tu copia; no mezcles una base restaurada con ficheros WAL/SHM de otra sesión.
 
-Variables útiles: `PORT`, `HUMANIZADOR_DATA_DIR`, `HUMANIZADOR_OLLAMA_ENABLED`, `HUMANIZADOR_OLLAMA_MODEL`. Los scripts no cargan `.env` automáticamente. `HUMANIZADOR_NO_BROWSER=1` evita abrir el navegador. `HUMANIZADOR_SKIP_BUILD=1` es una opción técnica para pruebas con un build ya preparado.
+Variables útiles: `PORT`, `HUMANIZADOR_DATA_DIR`, `HUMANIZADOR_OLLAMA_ENABLED`, `HUMANIZADOR_OLLAMA_MODEL`. Los scripts no cargan `.env` automáticamente. Las variables tienen prioridad sobre `data/settings.json`, que escribe el instalador; en una ubicación de datos personalizada, las preferencias están junto a esa base. `node tools/install.mjs --configure` permite revisarlas sin reinstalar dependencias; `--check` consulta el entorno sin cambios ni inferencia. `HUMANIZADOR_NO_BROWSER=1` evita abrir el navegador. `HUMANIZADOR_SKIP_BUILD=1` es una opción técnica para pruebas con un build ya preparado.
 
 ## Servidor remoto
 
@@ -40,3 +40,9 @@ Los documentos privados y sus revisiones permanecen locales. La entrega no ejecu
 - Aprendizaje: comprobar los bytes servidos y documentar las optimizaciones de imágenes del alojamiento sin atribuirles igualdad binaria.
 - Pendiente de producto: OCR, validación nativa en Windows y evaluación editorial representativa; no impiden usar la revisión actual.
 - No hay una medida fiable de tokens o coste facturado por esta tanda; no se atribuyen ahorros monetarios.
+
+## Instalación 0.6 y Windows
+
+Los wrappers guían la instalación oficial de Node sin modificar políticas globales ni instalar servicios. El asistente común usa procesos con argumentos separados, confirma las descargas de modelos y conserva los datos. Un archivo de bloqueo evita dos instaladores simultáneos. Si se interrumpió de forma abrupta, cerrar el instalador y retirar solo `data/installer.lock` antes de repetir; con directorio personalizado, usar esa ubicación.
+
+El supervisor identifica procesos por token y rutas conocidas. En Windows, donde terminar un proceso no ejecuta los manejadores SIGTERM de Unix, la parada invalida primero las reclamaciones de trabajo en SQLite, termina los procesos de su instancia y confirma la pausa. La prueba integrada comprueba puerto alternativo, reinicio, pausa, recuperación de hijos huérfanos y conservación de un servicio ajeno. La matriz CI ejecuta las pruebas en Windows, macOS y Linux; no representa una validación de todas las GPU ni de calidad editorial del modelo ligero.

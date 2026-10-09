@@ -101,7 +101,7 @@ export function createApp(db = openDatabase(), options = {}) {
         const mutation = !['GET', 'HEAD'].includes(req.method);
         if (mutation && req.headers['x-humanizador-request'] !== '1') fail(403, 'Falta la comprobación de la petición.');
         if (pathname === '/api/session' && req.method === 'GET') {
-          return send(res, 200, { authenticated: authenticated(req), passwordRequired: Boolean(password), mode: production ? 'server' : 'local', version: '0.5.0', instance: process.env.HUMANIZADOR_INSTANCE || null, start_notice: process.env.HUMANIZADOR_START_NOTICE || '', limits: { upload_mb: maxUploadMb, pages: 300 } });
+          return send(res, 200, { authenticated: authenticated(req), passwordRequired: Boolean(password), mode: production ? 'server' : 'local', version: '0.6.0', instance: process.env.HUMANIZADOR_INSTANCE || null, start_notice: process.env.HUMANIZADOR_START_NOTICE || '', limits: { upload_mb: maxUploadMb, pages: 300 } });
         }
         if (pathname === '/api/session' && req.method === 'POST') {
           const address = req.socket.remoteAddress ?? 'unknown';
